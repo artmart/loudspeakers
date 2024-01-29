@@ -23,10 +23,7 @@ AppAsset::register($this);
 
 <header>
     <?php
-    
-    
     /*
-    
     NavBar::begin([
         'brandLabel' => 'Maximo', // Html::img('/img/logo.jpg', ['alt' => Yii::$app->name, 'height'=>'40px']), //, height: 40px;
         'brandUrl' => Yii::$app->homeUrl,
