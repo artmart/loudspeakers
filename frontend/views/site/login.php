@@ -26,7 +26,7 @@ $this->title = 'Login';
 </style>
 <div class="site-login">
 <div class="row justify-content-md-center">
-<div class="col-lg-4">
+<div class="col-lg-5">
     <h1><?= Html::encode($this->title) ?></h1>
     <hr />
     <!--<p>Please fill out the following fields to login:</p>-->
@@ -37,13 +37,14 @@ $this->title = 'Login';
             <?= $form->field($model, 'password')->passwordInput() ?>
             <?php // echo $form->field($model, 'rememberMe')->checkbox() ?>
             <div style="color:#999;margin:1em 0">
-                <?= Html::a('Forgot Password? ', ['site/request-password-reset']) ?>.
+                <?= Html::a('Forgot Password? ', ['site/request-password-reset']) ?>
                 <?php /*
                 <br />
                 Need new verification email? <?= Html::a('Resend', ['site/resend-verification-email']) ?>
-                <br />  
+                <br />  */ ?>  
+               
                 Not yet member? <?= Html::a('Signup now', ['site/signup']) ?>.
-                */ ?>           
+                        
             </div>
             <div class="form-group">
                 <?= Html::submitButton('Login', ['class' => 'btn btn-primary w-100', 'name' => 'login-button']) ?>
