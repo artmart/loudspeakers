@@ -13,7 +13,6 @@ $this->title = 'Login';
     border-color: #30bc99;
 }
 
-
 #loginpic {
   height: 200px;
   background-image: url('/img/login.jpg'); 
