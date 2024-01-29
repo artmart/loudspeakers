@@ -118,7 +118,7 @@ class UserController extends Controller
                      
                     Yii::$app->mailer->compose('layouts/html', ['content'=>$content])
                         ->setTo($model->email)
-                        ->setFrom(Yii::$app->params['senderEmail'])
+                        ->setFrom(Yii::$app->params['supportEmail'])
                         ->setSubject('Your account has been created')
                         //->setTextBody($content)
                         ->setHtmlBody($content)

@@ -3,7 +3,7 @@
 /** @var yii\web\View $this */
 /** @var string $content */
 
-use backend\assets\AppAsset;
+use frontend\assets\AppAsset;
 use yii\helpers\Html;
 
 AppAsset::register($this);
@@ -35,7 +35,9 @@ style="background-image: url('/img/login1.jpg');
 
 <main role="main">
     <div class="container">
+    <div class="mt-5 offset-lg-3 col-lg-6">
         <?= $content ?>
+    </div>
     </div>
 </main>
 
