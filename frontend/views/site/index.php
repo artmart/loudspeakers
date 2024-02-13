@@ -3,8 +3,20 @@
 
 $this->title = 'Dashboard';
 $this->params['breadcrumbs'][] = $this->title;
+
+
+/*
+use Shuchkin\SimpleCSV;
+
+$arr = [];
+if ( $csv = SimpleCSV::import('uploads/targetcurve.csv') ) {
+                   $json = json_encode($csv);
+                    var_dump($json ); // $csv->rows()
+                }
+
+*/
 ?>
-<!--
+
             <div class="row">
             <div class="col-lg-12">
             <div class="top_tiles">
@@ -12,27 +24,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="tile-stats">
                   <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
                   <div class="count">4</div>
-                  <h3>Active Clients</h3>
+                  <h3>Active Transducers</h3>
                 </div>
               </div>
               <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 ">
                 <div class="tile-stats">
                   <div class="icon"><i class="fa fa-comments-o"></i></div>
                   <div class="count">3</div>
-                  <h3>Clients Pending</h3>
+                  <h3>Inactive Transducers</h3>
                 </div>
               </div>
               <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 ">
                 <div class="tile-stats">
                   <div class="icon"><i class="fa fa-check-square-o"></i></div>
                   <div class="count">1</div>
-                  <h3>Clients Completed</h3>
+                  <h3>Targets</h3>
                 </div>
               </div>
             </div>
             </div>
           </div>
--->
+
               <div class="clearfix"></div>
 
               <div class="col-md-12 col-sm-12  ">

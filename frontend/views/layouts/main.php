@@ -108,7 +108,7 @@ $user_group = Yii::$app->user->identity->user_group;
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="/" class="site_title"><i class="fa fa-cloud"></i></a>
+              <a href="/" class="site_title"><img src="/favicon.ico" width="40px" alt=""></a>
             </div>
 
             <div class="clearfix"></div>
@@ -133,7 +133,7 @@ $user_group = Yii::$app->user->identity->user_group;
 <?php if($user_group==1){?>                  
                   <li><a href="/user"><i class="fa fa-user"></i> Users</a></li>
 <?php } ?>                   
-                  
+                  <li><a href="/transducers"><i class="fa fa-volume-up"></i> Transducers</a></li>
                   
                   <!--
                   <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
