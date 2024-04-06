@@ -14,7 +14,7 @@ class ChartsAsset extends AssetBundle
         'build/css/custom.css',
     ];*/
     public $js = [
-        "vendor/chart.js/dist/Chart.bundle.min.js",
+        //"vendor/chart.js/dist/Chart.bundle.min.js",
         "vendor/highcharts/highcharts.js",
         "vendor/highcharts/exporting.js",
         "vendor/highcharts/export-data.js",
