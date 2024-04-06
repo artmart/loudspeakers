@@ -118,7 +118,7 @@ foreach($types as $t){
             'entry_time',
             [
                 'class' => ActionColumn::className(),
-                'template'=>'{update} {delete}', //{view} 
+                'template'=>'{view} {update} {delete}', //
                 'urlCreator' => function ($action, Transducers $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }

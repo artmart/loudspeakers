@@ -1011,7 +1011,7 @@
   min-height: 100%;
   width: 230px;
   padding: 0;
-  position: absolute;
+  position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
