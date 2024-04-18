@@ -135,17 +135,17 @@ ChartsAsset::register($this);
 $re = $model->re;
 //            'z1k',
 //            'z10k',
-$le = $model->le;
+$le = $model->le/1000;
 //            'leb',
 //            'ke',
 //            'rss',
-//            'fs',
+$fs = $model->fs;
 //            'qms',
 //            'qes',
 //            'qts',
 $rms = $model->rms;
 $mms = $model->mms/1000;
-$cms = $model->cms/100;
+$cms = $model->cms/1000;
 //           'vas',
 $sd = $model->sd;
 $bl = $model->bl;
@@ -289,12 +289,30 @@ if(in_array($resolution, $allowed)){ // ismember($resolution, $allowed)
 
 }
 
-$start_freq = 20;
+
+function generate_freq_list($freq_start, $freq_end, $ppo){
+
+    //ppo means points per octave
+   
+    $numStart = ceil(log($freq_start/1000, 2)*$ppo);
+    $numEnd = ceil(log($freq_end/1000, 2)*$ppo);
+    
+    for($i=$numStart; $i<=$numEnd + 1; $i=$i+1){
+    
+    $freq_array[] = round(1000*pow(2,$i/$ppo));
+    
+    }
+    return $freq_array;
+
+}
+
+
+$start_freq = 10;
 $stop_freq = 20000;
 
-$resolution = 10000;
+$resolution = 100;
  
-$freq = isospace($start_freq, $stop_freq, $resolution);
+$freq = generate_freq_list(10, 3000, 48*8); //($start_freq, $stop_freq, $resolution); // isospace($start_freq, $stop_freq, $resolution);
 
 //var_dump($freq);
 //exit;
@@ -303,7 +321,7 @@ $freq = isospace($start_freq, $stop_freq, $resolution);
 
 $re2 = 0;
 $le2 = 0.001;
-$kms = 1/$cms;
+$kms = 1000/$cms; // $mms*Pow($fs*2*M_PI, 2); // // Kms = Mms * (self.fs * 2 * np.pi)**2
 
 //$freq = 100; /////??????
 $_1i = 1;
@@ -320,7 +338,14 @@ $Ditance = 1;
 
 $k = 0;
 $impedance_data = [];
+
+//$freq = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000];
+
+
+
 foreach ($freq as $f) {
+
+//for($f=0.1; $f<=200; $f=$f+1){
     $z_electrical[$k] = new ComplexNumber($re, 2*M_PI*$f*$le);
     $z_mechanical[$k] = new ComplexNumber($rms, 2*M_PI*$f*$mms-1/(2*M_PI*$f*$cms));
         $complex1 = new ComplexNumber($bl*$bl, 0);
@@ -410,51 +435,6 @@ $p_far = $U_ac * ($rho0*$s/$SourceSpace/M_PI/$Distance);       #% Acoustic press
 #% Generate a logarithmically spaced vector with twice the calculated points.
 //$frequencies = logspace(log10($start_freq), log10($stop_freq), 2 * $points);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-    $alias = Yii::getAlias("@frontend/web/uploads/target_curves");
-    $path = $alias . DIRECTORY_SEPARATOR . $model->target_curve;
-                   
-    if ( $csv = SimpleCSV::import($path) ) {
-        $json = json_encode($csv);
-        
-        foreach($csv as $r){
-            if(isset($r[0]) && isset($r[1]))
-          
-            $chart_data[] = ['name'=>$r[0], 'y'=>floatval($r[1])]; 
-        }
-        //var_dump($csv);
-        
-        //$chart_data=[];
-      //$model->target_curve
-    }
-
 ?>
 <hr />
  <div id="chart1"></div>
@@ -500,14 +480,37 @@ Highcharts.chart('chart1', {
         ]
 });
 
+</script>
 
 
 
+<?php 
+
+//////////////////////////////////////////////////////////////////////////////////////
+    $alias = Yii::getAlias("@frontend/web/uploads/target_curves");
+    $path = $alias . DIRECTORY_SEPARATOR . $model->target_curve;
+    
+    //$path1 = Yii::getAlias("@frontend").'/web/uploads/target_curves/'.$file_target_curve;
+if(file_exists($path) && $model->target_curve){
+                   
+    if ( $csv = SimpleCSV::import($path) ) {
+        $json = json_encode($csv);
+        
+        foreach($csv as $r){
+            if(isset($r[0]) && isset($r[1]))
+          
+            $chart_data[] = ['name'=>$r[0], 'y'=>floatval($r[1])]; 
+        }
+        //var_dump($csv);
+        
+        //$chart_data=[];
+      //$model->target_curve
+    }
+
+?>
 
 
-
-
-
+<script>
 Highcharts.chart('chart2', {
     chart: {type: 'line'},
     title: {
@@ -539,6 +542,9 @@ Highcharts.chart('chart2', {
         ]
 });
 </script>
+
+<?php } ?>
+
 </div>
 
 </div>
