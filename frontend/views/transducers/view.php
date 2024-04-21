@@ -312,7 +312,7 @@ $stop_freq = 20000;
 
 $resolution = 100;
  
-$freq = generate_freq_list(10, 3000, 48*8); //($start_freq, $stop_freq, $resolution); // isospace($start_freq, $stop_freq, $resolution);
+$freq = generate_freq_list($start_freq, $stop_freq, $resolution); //(10, 3000, 48*8); //($start_freq, $stop_freq, $resolution); // isospace($start_freq, $stop_freq, $resolution);
 
 //var_dump($freq);
 //exit;
