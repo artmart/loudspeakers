@@ -321,7 +321,7 @@ $freq = generate_freq_list($start_freq, $stop_freq, $resolution); //(10, 3000, 4
 
 $re2 = 0;
 $le2 = 0.001;
-$kms = 1000/$cms; // $mms*Pow($fs*2*M_PI, 2); // // Kms = Mms * (self.fs * 2 * np.pi)**2
+$kms = $mms*Pow($fs*2*M_PI, 2); //1000/$cms; //  // Kms = Mms * (self.fs * 2 * np.pi)**2
 
 //$freq = 100; /////??????
 $_1i = 1;
