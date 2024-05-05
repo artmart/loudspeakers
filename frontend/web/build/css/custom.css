@@ -2274,7 +2274,8 @@ span.right {
 
 @media (min-width: 992px) {
   footer {
-    margin-left: 230px; } }
+    /*margin-left: 230px; */
+	} }
 
 @media (min-width: 992px) {
   .tile_count .tile_stats_count {

@@ -44,7 +44,38 @@ class ComplexNumber {
   
     public function getImaginary() { 
         return $this->imaginary; 
+    }
+    
+    
+    ///////////////////////////
+    
+    public function multiply(ComplexNumber $complexNumber) { 
+        $real = $this->real * $complexNumber->getReal()  
+            - $this->imaginary * $complexNumber->getImaginary(); 
+              
+        $imaginary = $this->real * $complexNumber->getImaginary()  
+            + $this->imaginary * $complexNumber->getReal(); 
+              
+        return new ComplexNumber($real, $imaginary); 
     } 
+    
+    
+    public function subtract(ComplexNumber $complexNumber) { 
+        return new ComplexNumber( 
+            $this->real - $complexNumber->getReal(), 
+            $this->imaginary - $complexNumber->getImaginary() 
+        ); 
+    } 
+    
+    
+    public function add(ComplexNumber $complexNumber) { 
+        return new ComplexNumber( 
+            $this->real + $complexNumber->getReal(), 
+            $this->imaginary + $complexNumber->getImaginary() 
+        ); 
+    } 
+    
+     
 } 
 
 

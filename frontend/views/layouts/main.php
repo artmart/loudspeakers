@@ -135,6 +135,8 @@ $user_group = Yii::$app->user->identity->user_group;
 <?php } ?>                   
                   <li><a href="/transducers"><i class="fa fa-volume-up"></i> Transducers</a></li>
                   
+                   <li><a href="/targets"><i class="fa fa-volume-up"></i> Targets</a></li>
+                  
                   <!--
                   <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
