@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 
-$this->title = 'Create New Transducer';
+$this->title = 'Create New Target';
 $this->params['breadcrumbs'][] = ['label' => 'Targets', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
