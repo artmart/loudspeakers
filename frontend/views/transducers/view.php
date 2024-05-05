@@ -147,7 +147,7 @@ $rms = $model->rms;
 $mms = $model->mms/1000;
 $cms = $model->cms/1000;
 //           'vas',
-$sd = $model->sd;
+$sd = $model->sd/10000;
 $bl = $model->bl;
 //            'pmax',
 //            'xmax',
