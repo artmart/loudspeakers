@@ -310,8 +310,7 @@ function generate_freq_list($freq_start, $freq_end, $ppo){
 
 $start_freq = 10;
 $stop_freq = 20000;
-
-$resolution = 10;
+$resolution = 48;
  
 $freq = generate_freq_list($start_freq, $stop_freq, $resolution); //(10, 3000, 48*8); //($start_freq, $stop_freq, $resolution); // isospace($start_freq, $stop_freq, $resolution);
 
