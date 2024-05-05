@@ -60,7 +60,7 @@ class Targets extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'Targets';
+        return 'targets';
     }
 
     /**
