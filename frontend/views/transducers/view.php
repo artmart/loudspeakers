@@ -147,7 +147,7 @@ $rms = $model->rms;
 $mms = $model->mms/1000;
 $cms = $model->cms/1000;
 //           'vas',
-$sd = $model->sd/10000;
+$sd = $model->sd;///10000;
 $bl = $model->bl;
 //            'pmax',
 //            'xmax',
@@ -343,12 +343,14 @@ $frequency_response_data = [];
 
 $freq1 = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000];
 
-$tickPositions = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 15000, 19000, 20000];
 
 
 $categories = [];
 
 asort($freq);
+
+$tickPositions = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 15000, 19000, 20000];
+
 //var_dump($freq);
 //exit;
 
@@ -410,7 +412,7 @@ $p_far_plot[$k] = new ComplexNumber(20*log($p_far[$k]->magnitude(), 10), 20*atan
 //$frequency_response_data[] = $p_far_plot;
     
     
-    $frequency_response_data[] = $p_far_plot[$k]->magnitude();
+    $frequency_response_data[$k] = $p_far_plot[$k]->magnitude();
  
  
  
@@ -501,8 +503,8 @@ Highcharts.chart('chart1', {
         align: 'center'
     },
    
-    xAxis: {//type: 'category',
-    categories: <?=json_encode($freq);?>, 
+    xAxis: {type: 'category',
+    //categories: <?=json_encode($freq);?>, 
     //max: 20000,
     //min: 0,
     //crosshair: true,
@@ -570,8 +572,8 @@ Highcharts.chart('chart2', {
         align: 'center'
     },
    
-    xAxis: {//type: 'category',
-    categories: <?=json_encode($freq);?>, 
+    xAxis: {type: 'category',
+    //categories: <?=json_encode($freq);?>, 
     //max: 20000,
     //min: 0,
     //crosshair: true,
