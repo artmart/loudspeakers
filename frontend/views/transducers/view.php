@@ -1,4 +1,5 @@
 <?php
+//require "vendor/autoload.php";
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -6,7 +7,7 @@ use frontend\models\Types;
 use frontend\models\User;
 use frontend\assets\ChartsAsset;
 use Shuchkin\SimpleCSV;
-
+use SciPhp\NumPhp as np;
 use common\components\ComplexNumber;
 
 //$complex1 = new ComplexNumber(2, 3); 
@@ -47,7 +48,7 @@ ChartsAsset::register($this);
   </div>
 
   <div class="x_content">
-<div class="col-md-4">
+<div class="col-md-3">
     <div class="table-responsive table-sm">  
 
     <?= DetailView::widget([
@@ -129,7 +130,7 @@ ChartsAsset::register($this);
     
 </div>
 </div>
-<div class="col-md-8">
+<div class="col-md-9">
 
 <?php 
 $re = $model->re;
@@ -147,7 +148,7 @@ $rms = $model->rms;
 $mms = $model->mms/1000;
 $cms = $model->cms/1000;
 //           'vas',
-$sd = $model->sd;///10000;
+$sd = $model->sd/10000;
 $bl = $model->bl;
 //            'pmax',
 //            'xmax',
@@ -255,7 +256,7 @@ $resolution = getClosest($dd, $allowed); //    $allowed[array_search($dd, $allow
 $points = ceil($resolution * log($stop_freq / $start_freq, 2) + log($stop_freq / $start_freq, 10));
 
 #% Generate a logarithmically spaced vector with twice the calculated points.
-$frequencies = logspace(log10($start_freq), log($stop_freq, 10), 2 * $points);
+//$frequencies = logspace(log10($start_freq), log($stop_freq, 10), 2 * $points);
 
 #% Check if the resolution is supported (ISO preferred numbers).
 if(in_array($resolution, $allowed)){ // ismember($resolution, $allowed)
@@ -298,8 +299,9 @@ function generate_freq_list($freq_start, $freq_end, $ppo){
     $numEnd = ceil(log($freq_end/1000, 2)*$ppo);
     
     for($i=$numStart; $i<=$numEnd + 1; $i=$i+1){
-    if(round(1000*pow(2,$i/$ppo))<=20000){
-        $freq_array[] = round(1000*pow(2,$i/$ppo));
+        $xx = round(1000*pow(2,$i/$ppo));
+    if($xx<=1000){
+        $freq_array[] = $xx;
     }
     
     }
@@ -308,12 +310,38 @@ function generate_freq_list($freq_start, $freq_end, $ppo){
 }
 
 
-$start_freq = 10;
-$stop_freq = 20000;
+$start_freq = 20;
+$stop_freq = 1000;
 $resolution = 48;
+$points = ceil($resolution * log($stop_freq / $start_freq, 2) + log($stop_freq / $start_freq, 10));
+
+
+
+
+
+//$freq = np::logspace(2, 5, 4, true, 2); //$frequencies = logspace(log10($start_freq), log($stop_freq, 10), 2 * $points);
+ 
+ function logspace2($start,$end,$num)
+{
+    $arr=array();
+    $logMin=log($start);
+    $logMax=log($end);
+    $delta=($logMax-$logMin)/$num;
+    $accDelta=0;
+
+    for($i=0;$i<=$num;$i++)
+    {
+        $num_i=pow(M_E,$logMin+$accDelta);
+        $arr[]=$num_i;
+        $accDelta+=$delta;
+    }        
+return $arr;
+}
+ 
+ //logspace2($start_freq, $stop_freq, $resolution); // 
  
 $freq = generate_freq_list($start_freq, $stop_freq, $resolution); //(10, 3000, 48*8); //($start_freq, $stop_freq, $resolution); // isospace($start_freq, $stop_freq, $resolution);
-
+//$freq = isospace($start_freq, $stop_freq, $resolution);
 //var_dump($freq);
 //exit;
 
@@ -342,8 +370,9 @@ $impedance_data = [];
 $frequency_response_data = [];
 
 $freq1 = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000];
+$freq2 = [10, 50, 100, 500, 1000, 5000, 10000, 15000, 20000];
 
-
+//$freq = $freq1; 
 
 $categories = [];
 
@@ -355,19 +384,26 @@ $tickPositions = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 
 //exit;
 
 $k = 0;
-foreach($freq as $f) {
+
+//$freq = [100];
+
+foreach($freq as $f){
 
 //for($f=0.1; $f<=200; $f=$f+1){
     $z_electrical[$k] = new ComplexNumber($re, 2*M_PI*$f*$le);
     $z_mechanical[$k] = new ComplexNumber($rms, 2*M_PI*$f*$mms-1/(2*M_PI*$f*$cms));
+    
+    
+    
         $complex1 = new ComplexNumber($bl*$bl, 0);
     $z_me[$k] = $complex1->divide($z_mechanical[$k]); 
-    $z[$k] = new ComplexNumber( $z_electrical[$k]->getReal()+$z_me[$k]->getReal(), $z_electrical[$k]->getImaginary()+$z_me[$k]->getImaginary());
+    $z[$k] = new ComplexNumber($z_electrical[$k]->getReal()+$z_me[$k]->getReal(), $z_electrical[$k]->getImaginary()+$z_me[$k]->getImaginary());
     
     $magnitude[$k] = $z[$k]->magnitude();
     //$categories[] =  $f; 
-    
+
     //$impedance_data[] = ['name'=>"$f", 'x'=>intval($f), 'y'=>floatval($magnitude[$k])];
+    //$impedance_data[] = [$f, floatval($magnitude[$k])];
     $impedance_data[] = floatval($magnitude[$k]);
     
  ///////////////////////////////////////////////////////////////  
@@ -377,6 +413,8 @@ $complex2 = new ComplexNumber($bl, 0);
 //$I_1V     // 1 ./ Z; 		// This means to take each impedance value (complex) and invert it. If the value was 2 + 3i then its 1/(2+3i)
 
 $f_mechac = $complex2->divide($z[$k]);  
+    
+
 //$f_mechac = $bl * I_1V 	// multiply the above by Bl from the database
 
 
@@ -386,16 +424,16 @@ $f_mechac = $complex2->divide($z[$k]);
 // Z_elec = s*Le + Re + (Re2+1e-12)*s*(Le2+1e-12) / ((Re2+1e-12) +  s*(Le2+1e-12));
 // Mechanical impedance of mechanical side of the transfomer
 // Z_mec = s*Mms + Rms + Kms./s;
-$Z_rad_c = 1;
-$Z_enc_r = 1;  
-$Z_ac    =  $Z_rad_c + $Z_enc_r;                                               // Total Acoustic Impedance or cone + rear enclosure
+//$Z_rad_c = 1;
+//$Z_enc_r = 1;  
+$Z_ac    =  1; //$Z_rad_c + $Z_enc_r;                                               // Total Acoustic Impedance or cone + rear enclosure
 $Z_ac_m  =  pow($sd, 2)*$Z_ac; 
 
 ////
 
 $u_mechac[$k] = $f_mechac->divide($z_mechanical[$k]); // $f_mechac ./ $u_mechac; 		// you should have u_mechac as an intermediate value from Impedance math. Use that and divide (element-by-element) f_mechac / u_mechac
 
-$p_ac[$k] = $u_mechac[$k]->multiply(new ComplexNumber($Z_ac_m/$sd, 0));           // you should have Z_ac_m from impedance math. Divide by Sd from the database
+$p_ac[$k] = $u_mechac[$k]->multiply(new ComplexNumber($sd, 0)); // $u_mechac[$k]->multiply(new ComplexNumber($Z_ac_m/$sd, 0));           // you should have Z_ac_m from impedance math. Divide by Sd from the database
 
 $U_ac[$k] = $p_ac[$k]->divide(new ComplexNumber($Z_ac, 0)); 
 
@@ -404,17 +442,23 @@ $w = 2*M_PI*$f;
 $s = new ComplexNumber(0, $w);//1i*$w;
 
 // element by element division
-$p_far[$k] = $U_ac[$k]->multiply($s)->multiply(new ComplexNumber(($rho0/$SourceSpace/M_PI/$distance)/0.000020, 0));  		// rho0 = 1.18; s = i*2*pi*frequency; SourceSpace = 2; Distance = 1;
+$p_far[$k] = $U_ac[$k]->multiply($s)->multiply(new ComplexNumber(($rho0/$SourceSpace/M_PI/$distance), 0));  		// rho0 = 1.18; s = i*2*pi*frequency; SourceSpace = 2; Distance = 1;
 
 //p_far is what you want to plot in dB.
+//0.0022 + 0.0113i
 
-$p_far_plot[$k] = new ComplexNumber(20*log($p_far[$k]->magnitude(), 10), 20*atan($p_far[$k]->getImaginary()/$p_far[$k]->getReal())); // 20*log($p_far[$k], 10);
+//$p_far_plot[$k] = new ComplexNumber(20*0.0022/0.00002, 20*0.0113/0.00002); // new ComplexNumber(20*log($p_far[$k]->magnitude(), 10)/0.00002, 20*atan($p_far[$k]->getImaginary()/$p_far[$k]->getReal())/0.00002); // 20*log($p_far[$k], 10);
 //$frequency_response_data[] = $p_far_plot;
-    
-    
-    $frequency_response_data[$k] = $p_far_plot[$k]->magnitude();
- 
- 
+
+$suffix = 'i';
+   $complexObject = new Complex\Complex($p_far[$k]->getReal()/0.00002, $p_far[$k]->getImaginary()/0.00002, $suffix);
+  //  print_r(atan($p_far[$k]->getImaginary()/$p_far[$k]->getReal())); echo "<br />";
+ $gggg = $complexObject->log10();
+ //echo new ComplexNumber($gggg)->magnitude();   
+    //echo  20*$gggg->abs();
+    $frequency_response_data[] = [$f, 20*$gggg->abs()]; //$p_far_plot[$k]->magnitude()];
+ //var_dump($p_far); 
+ //$frequency_response_data[] = $p_far_plot[$k]->magnitude();
  
  
  ////////////////////////////////////   
@@ -497,18 +541,18 @@ $p_far = $U_ac * ($rho0*$s/$SourceSpace/M_PI/$Distance);       #% Acoustic press
 <div id="chart3"></div>
 <script>
 Highcharts.chart('chart1', {
-    chart: {type: 'line'},
+    chart: {type: 'spline'},
     title: {
         text: 'Impedance',
         align: 'center'
     },
    
-    xAxis: {type: 'category',
+    xAxis: {//type: 'category',
     //categories: <?=json_encode($freq);?>, 
     //max: 20000,
     //min: 0,
     //crosshair: true,
-    tickPositions: <?=json_encode($tickPositions);?>,
+    //tickPositions: <?=json_encode($tickPositions);?>,
     gridLineWidth: '1',
     //lineWidth: 1,
     //alignTicks: true,
@@ -521,27 +565,21 @@ Highcharts.chart('chart1', {
     },
     yAxis: {
         title: {text: ''},
+
     },
     legend: {enabled: false},
+    credits: {enabled: false},
     plotOptions: {
         series: {
             borderWidth: 0,
             dataLabels: {
                 //enabled: true,
                 format: '{point.y:.0f}'
-            }
-        }
-    },
-    credits: {enabled: false},
-    plotOptions: {
-			series: {
+            },
+
               	//boostThreshold:100000,
-                turboThreshold: 100000,
-                borderWidth: 0,
-                dataLabels: {
-                    //enabled: true,
-                    format: '{point.y:.0f}'
-                },
+                //turboThreshold: 100000,
+
                 marker: {
                 enabled: false,
                 states: {
@@ -566,19 +604,25 @@ Highcharts.chart('chart1', {
 
 
 Highcharts.chart('chart2', {
-    chart: {type: 'line'},
+    chart: {type: 'spline', "zoomType":"x",},
     title: {
         text: 'Frequency Response',
         align: 'center'
     },
    
-    xAxis: {type: 'category',
+    xAxis: {//type: 'category',
     //categories: <?=json_encode($freq);?>, 
-    //max: 20000,
-    //min: 0,
+    //max: 500,
+    min: 0,
+
     //crosshair: true,
-    tickPositions: <?=json_encode($tickPositions);?>,
+    
+
+    //tickPositions: <?=json_encode($tickPositions);?>,
     gridLineWidth: '1',
+    ordinal: true, 
+//Interval: 100,
+    //tickInterval: 100,
     //lineWidth: 1,
     //alignTicks: true,
     /*labels: {
@@ -592,25 +636,24 @@ Highcharts.chart('chart2', {
         title: {text: ''},
     },
     legend: {enabled: false},
+    credits: {enabled: false},
     plotOptions: {
         series: {
             borderWidth: 0,
             dataLabels: {
                 //enabled: true,
                 format: '{point.y:.0f}'
-            }
-        }
-    },
-    credits: {enabled: false},
-    plotOptions: {
-			series: {
+            },
+             //pointStart: 0,
+            //pointInterval: 100, // one hour
+            //relativeXValue: true,
+            //pointIntervalUnit: 100,
+
+             
               	//boostThreshold:100000,
-                turboThreshold: 100000,
-                borderWidth: 0,
-                dataLabels: {
-                    //enabled: true,
-                    format: '{point.y:.0f}'
-                },
+                //turboThreshold: 100000,
+
+
                 marker: {
                 enabled: false,
                 states: {

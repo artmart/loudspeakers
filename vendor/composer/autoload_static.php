@@ -12,6 +12,7 @@ class ComposerStaticInitb7fa3ab523973cbb1cc19655421421f5
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
@@ -21,8 +22,49 @@ class ComposerStaticInitb7fa3ab523973cbb1cc19655421421f5
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         'e3b2795a8a512b6083af088fb53afe6c' => __DIR__ . '/..' . '/codeception/codeception/functions.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '77e7c5c0b74965caa0fbb0a094b7713f' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/bootstrap.php',
+        'b0bf144d6b17e6e78e77ffefe7bd8211' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/abs.php',
+        '1fdc0f9935eaf9a6cb70339ab7fd93fe' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/acos.php',
+        'b6e1b7b20206b41453bff2e633fdb5c9' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/acosh.php',
+        '23a9c4ed643f24fb02c79a1343e7c4dc' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/acot.php',
+        '07c71c8db862840394902359fd20ba74' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/acoth.php',
+        '3f310cd991f76207096f47334dd6c78e' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/acsc.php',
+        '79b62a027d275dfc8afdc6c2b7ccd3f4' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/acsch.php',
+        '4bc8bd9dde27f14ae44112dc65a9dfbb' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/argument.php',
+        '95b3b3a9f41d549a499cb3a9ff50f343' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/asec.php',
+        '03de2c2531889022a04c9896010ed804' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/asech.php',
+        '14fe051a5e00465ad985c922fad0d736' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/asin.php',
+        'a0fcfd66b8f599c6fd7ed6f3d435c996' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/asinh.php',
+        '9ff9430bab1fab8a768a53259f997df4' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/atan.php',
+        '895f677ca130c5de1de85e4909e2ed40' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/atanh.php',
+        'e95cb7e5329f2ed23937bb4394ac3583' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/conjugate.php',
+        'e0ff6e64b245875d32b5790815ede3d4' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/cos.php',
+        'acb66882e52fdb8069c840a62e354fbe' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/cosh.php',
+        '26f009a48f95f3b38ceb46ff401e7ea2' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/cot.php',
+        '558f8438da4ca4bc9f0c9f8b41cc423c' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/coth.php',
+        '9cbc602f466aca6907614af12f488a58' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/csc.php',
+        '062a820c07cd46059135351c0b4777e5' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/csch.php',
+        '98414a91fccf9bb7e15a7fea5fd92c74' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/exp.php',
+        '8f28c902c1b63dbdf004dbf39a5e232c' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/inverse.php',
+        '2e522426f65291e260b9b26fbdb3ecae' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/ln.php',
+        '084dd473975453bd879c57075d7737ca' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/log2.php',
+        '8ed55d0e25650d7b64f25981c4568290' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/log10.php',
+        '5d0e58a30aa86a04231f45a32769da85' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/negative.php',
+        'a471d747617fe3bee123e1fda5254feb' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/pow.php',
+        '72e9495f015cd10d51e6bd5e5f19815c' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/rho.php',
+        '6e85d3545192c64377951197e41cd371' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/sec.php',
+        '2032a595f77bab80a7caecee76124815' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/sech.php',
+        '92a7b0c6f414ef847f7ce8c27753b08f' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/sin.php',
+        'a5f1414f65fcfde37daecce32ce5a2f5' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/sinh.php',
+        '863ffe71a7af591b298e7d30e81e7396' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/sqrt.php',
+        '84ab0d221855ab99f130c7e92077f310' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/tan.php',
+        'd78f00d73d0fe57628f1d95d514ab480' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/tanh.php',
+        '1db5eed2b8277435b6abda7f53ee88a6' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/functions/theta.php',
+        '96015e0c5607b94907103bc6f02d8ab6' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/operations/add.php',
+        'd0b74b37a328d286bcfabfb6fe6a7749' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/operations/subtract.php',
+        '5185b24facab8a2e2f156a596eb9a49c' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/operations/multiply.php',
+        'f3ef9bc9ed8e814e0d5fc8135fa82293' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/operations/divideby.php',
+        '7aff6f45f0e5a4b629bd949f9a335f32' => __DIR__ . '/..' . '/markbaker/complex-functions/classes/src/operations/divideinto.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -39,6 +81,10 @@ class ComposerStaticInitb7fa3ab523973cbb1cc19655421421f5
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
+        ),
+        'W' => 
+        array (
+            'Webmozart\\Assert\\' => 17,
         ),
         'S' => 
         array (
@@ -61,6 +107,8 @@ class ComposerStaticInitb7fa3ab523973cbb1cc19655421421f5
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\BrowserKit\\' => 29,
+            'SciPhp\\' => 7,
+            'SciPhpTest\\' => 11,
         ),
         'P' => 
         array (
@@ -95,6 +143,7 @@ class ComposerStaticInitb7fa3ab523973cbb1cc19655421421f5
         ),
         'C' => 
         array (
+            'Complex\\' => 8,
             'Codeception\\Extension\\' => 22,
             'Codeception\\' => 12,
         ),
@@ -132,6 +181,10 @@ class ComposerStaticInitb7fa3ab523973cbb1cc19655421421f5
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'Webmozart\\Assert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
         'Symfony\\Polyfill\\Php72\\' => 
         array (
@@ -209,6 +262,14 @@ class ComposerStaticInitb7fa3ab523973cbb1cc19655421421f5
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
         ),
+        'SciPhp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sciphp/numphp/src/SciPhp',
+        ),
+        'SciPhpTest\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sciphp/numphp/test',
+        ),
         'Psy\\' => 
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src',
@@ -262,15 +323,19 @@ class ComposerStaticInitb7fa3ab523973cbb1cc19655421421f5
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'Complex\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
+        ),
         'Codeception\\Extension\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeception/codeception/ext',
         ),
         'Codeception\\' => 
         array (
-            0 => __DIR__ . '/..' . '/codeception/verify/src/Codeception',
+            0 => __DIR__ . '/..' . '/codeception/codeception/src/Codeception',
             1 => __DIR__ . '/..' . '/codeception/stub/src',
-            2 => __DIR__ . '/..' . '/codeception/codeception/src/Codeception',
+            2 => __DIR__ . '/..' . '/codeception/verify/src/Codeception',
         ),
     );
 
@@ -722,6 +787,7 @@ class ComposerStaticInitb7fa3ab523973cbb1cc19655421421f5
         'PharIo\\Manifest\\ManifestLoader' => __DIR__ . '/..' . '/phar-io/manifest/src/ManifestLoader.php',
         'PharIo\\Manifest\\ManifestLoaderException' => __DIR__ . '/..' . '/phar-io/manifest/src/exceptions/ManifestLoaderException.php',
         'PharIo\\Manifest\\ManifestSerializer' => __DIR__ . '/..' . '/phar-io/manifest/src/ManifestSerializer.php',
+        'PharIo\\Manifest\\NoEmailAddressException' => __DIR__ . '/..' . '/phar-io/manifest/src/exceptions/NoEmailAddressException.php',
         'PharIo\\Manifest\\PhpElement' => __DIR__ . '/..' . '/phar-io/manifest/src/xml/PhpElement.php',
         'PharIo\\Manifest\\PhpExtensionRequirement' => __DIR__ . '/..' . '/phar-io/manifest/src/values/PhpExtensionRequirement.php',
         'PharIo\\Manifest\\PhpVersionRequirement' => __DIR__ . '/..' . '/phar-io/manifest/src/values/PhpVersionRequirement.php',
