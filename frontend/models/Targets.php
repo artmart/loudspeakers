@@ -69,19 +69,19 @@ class Targets extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['manufacturer', 'model', 'type', 'status', 'updated', 'entered_by', 'entry_time'], 'required'],
-            [['type', 'status', 'entered_by'], 'integer'],
-            [['size', 're', 'z1k', 'z10k', 'le', 'leb', 'ke', 'rss', 'fs', 'qms', 'qes', 'qts', 'rms', 'mms', 'cms', 'vas', 'sd', 'bl', 'pmax', 'xmax', 'beta', 'uspl', 'bl2_re', 'vocc', 'weight', 'diameter_oa', 'height_oa', 'cost'], 'number'],
-            [['updated', 'entry_time'], 'safe'], //, 'target_curve_json'
-            [['manufacturer', 'model', 'revision', 'webpage'], 'string', 'max' => 500],
+            [['target', 'entered_by', 'entry_time', 'updated'], 'required'],
+            [['entered_by'], 'integer'],
+            //[['size', 're', 'z1k', 'z10k', 'le', 'leb', 'ke', 'rss', 'fs', 'qms', 'qes', 'qts', 'rms', 'mms', 'cms', 'vas', 'sd', 'bl', 'pmax', 'xmax', 'beta', 'uspl', 'bl2_re', 'vocc', 'weight', 'diameter_oa', 'height_oa', 'cost'], 'number'],
+            [['entry_time', 'updated'], 'safe'], //, 'target_curve_json'
+            [['target'], 'string', 'max' => 500],
             //[['test_signal', 'target_curve', 'data_sheet'], 'string', 'max' => 255],
-            [['status'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status' => 'id']],
-            [['type'], 'exist', 'skipOnError' => true, 'targetClass' => Types::class, 'targetAttribute' => ['type' => 'id']],
+            //[['status'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status' => 'id']],
+            //[['type'], 'exist', 'skipOnError' => true, 'targetClass' => Types::class, 'targetAttribute' => ['type' => 'id']],
             [['entered_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['entered_by' => 'id']],
             
-            [['test_signal'], 'file', 'skipOnEmpty' => true, 'extensions' => 'wav'],
+            //[['test_signal'], 'file', 'skipOnEmpty' => true, 'extensions' => 'wav'],
             [['target_curve'], 'file', 'skipOnEmpty' => true, 'extensions' => 'csv'],
-            [['data_sheet'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf'],
+            //[['data_sheet'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf'],
         ];
     }
 
@@ -92,8 +92,8 @@ class Targets extends \yii\db\ActiveRecord
     {
         return [        
             'id' => 'ID',
-            'manufacturer' => 'Manufacturer',
-            'model' => 'Model',
+            'target' => 'Target',
+            /*'model' => 'Model',
             'type' => 'Type',
             'size' => 'Size [in]',
             'status' => 'Status',
@@ -120,7 +120,7 @@ class Targets extends \yii\db\ActiveRecord
             'uspl' => 'USPL [dB]',
             'bl2_re' => 'BL2/Re',
             'revision' => 'Revision',
-            'updated' => 'Updated',
+            
             'vocc' => 'Vocc',
             'weight' => 'Weight',
             'diameter_oa' => 'Diameter_OA',
@@ -129,7 +129,8 @@ class Targets extends \yii\db\ActiveRecord
             'test_signal' => 'Test Signal',
             'cost' => 'Cost',
             'webpage' => 'Webpage',
-            'data_sheet' => 'Data Sheet',
+            'data_sheet' => 'Data Sheet',*/
+            'updated' => 'Updated',
             'entered_by' => 'Entered By',
             'entry_time' => 'Entry Time',
         ];

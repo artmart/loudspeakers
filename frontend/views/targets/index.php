@@ -1,14 +1,10 @@
 <?php
-
 use frontend\models\Targets;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-/** @var yii\web\View $this */
-/** @var frontend\models\TargetsSearch $searchModel */
-/** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Targets';
 $this->params['breadcrumbs'][] = $this->title;
@@ -55,65 +51,8 @@ foreach($types as $t){
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            'manufacturer',
-            'model',
-            //'type',
-            [
-                'attribute' => 'type',
-                'filter'=>$types_arr, //['1'=>'Active', '2'=>'Discontinued', '3'=>'Preliminary or Vintage'],
-                'format' => 'raw',
-                'value'=>  function($data) use ($types_arr) {
-                       //var_dump($types_arr);
-                        return $types_arr[$data->type];                      
-                    }, 
-            ],
-            //'size',
-            //'status',
-            [
-                'attribute' => 'status',
-                'filter'=>['1'=>'Active', '2'=>'Discontinued', '3'=>'Preliminary or Vintage'],
-                'format' => 'raw',
-                'value'=>  function($data) {
-                        $arr_values = ['1'=>'Active', '2'=>'Discontinued', '3'=>'Preliminary or Vintage'];
-                        return $arr_values[$data->status];                      
-                    }, 
-            ],
-            //'re',
-            //'z1k',
-            //'z10k',
-            //'le',
-            //'leb',
-            //'ke',
-            //'rss',
-            //'fs',
-            //'qms',
-            //'qes',
-            //'qts',
-            //'rms',
-            //'mms',
-            //'cms',
-            //'vas',
-            //'sd',
-            //'bl',
-            //'pmax',
-            //'xmax',
-            //'beta',
-            //'uspl',
-            //'bl2_re',
-            //'revision',
-            //'updated',
-            //'vocc',
-            //'weight',
-            //'diameter_oa',
-            //'height_oa',
-            //'target_curve',
-            //'test_signal',
-            //'cost',
-            //'webpage',
-            //'data_sheet',
+            'target',
+            'updated',
             //'entered_by',
             'entry_time',
             [

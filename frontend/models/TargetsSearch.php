@@ -17,9 +17,9 @@ class TargetsSearch extends Targets
     public function rules()
     {
         return [
-            [['id', 'type', 'status', 'entered_by'], 'integer'],
-            [['manufacturer', 'model', 'revision', 'updated', 'target_curve', 'test_signal', 'webpage', 'data_sheet', 'entry_time'], 'safe'],
-            [['size', 're', 'z1k', 'z10k', 'le', 'leb', 'ke', 'rss', 'fs', 'qms', 'qes', 'qts', 'rms', 'mms', 'cms', 'vas', 'sd', 'bl', 'pmax', 'xmax', 'beta', 'uspl', 'bl2_re', 'vocc', 'weight', 'diameter_oa', 'height_oa', 'cost'], 'number'],
+            [['id', 'entered_by'], 'integer'],
+            [['target', 'entry_time', 'updated'], 'safe'],
+            //[['size', 're', 'z1k', 'z10k', 'le', 'leb', 'ke', 'rss', 'fs', 'qms', 'qes', 'qts', 'rms', 'mms', 'cms', 'vas', 'sd', 'bl', 'pmax', 'xmax', 'beta', 'uspl', 'bl2_re', 'vocc', 'weight', 'diameter_oa', 'height_oa', 'cost'], 'number'],
         ];
     }
 
@@ -60,7 +60,7 @@ class TargetsSearch extends Targets
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'type' => $this->type,
+            /*'type' => $this->type,
             'size' => $this->size,
             'status' => $this->status,
             're' => $this->re,
@@ -85,23 +85,24 @@ class TargetsSearch extends Targets
             'beta' => $this->beta,
             'uspl' => $this->uspl,
             'bl2_re' => $this->bl2_re,
-            'updated' => $this->updated,
+            
             'vocc' => $this->vocc,
             'weight' => $this->weight,
             'diameter_oa' => $this->diameter_oa,
             'height_oa' => $this->height_oa,
-            'cost' => $this->cost,
+            'cost' => $this->cost,*/
+            'updated' => $this->updated,
             'entered_by' => $this->entered_by,
             'entry_time' => $this->entry_time,
         ]);
 
-        $query->andFilterWhere(['like', 'manufacturer', $this->manufacturer])
-            ->andFilterWhere(['like', 'model', $this->model])
-            ->andFilterWhere(['like', 'revision', $this->revision])
-            ->andFilterWhere(['like', 'target_curve', $this->target_curve])
-            ->andFilterWhere(['like', 'test_signal', $this->test_signal])
-            ->andFilterWhere(['like', 'webpage', $this->webpage])
-            ->andFilterWhere(['like', 'data_sheet', $this->data_sheet]);
+        $query->andFilterWhere(['like', 'target', $this->target])
+            //->andFilterWhere(['like', 'model', $this->model])
+            //->andFilterWhere(['like', 'revision', $this->revision])
+            ->andFilterWhere(['like', 'target_curve', $this->target_curve]);
+            //->andFilterWhere(['like', 'test_signal', $this->test_signal])
+            //->andFilterWhere(['like', 'webpage', $this->webpage])
+            //->andFilterWhere(['like', 'data_sheet', $this->data_sheet]);
 
         return $dataProvider;
     }

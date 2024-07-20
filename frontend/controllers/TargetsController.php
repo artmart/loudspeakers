@@ -115,44 +115,8 @@ class TargetsController extends Controller
                 $name = time() . '.' . $upload->extension;
                 $path = $alias . DIRECTORY_SEPARATOR . $name;
                 $model->target_curve = $name;
-                $upload->saveAs($path);
-                
-                
-                
-                /*        
-                if ( $csv = SimpleCSV::import($path) ) {
-                    $json = json_encode($csv);
-                  $model->target_curve
-                }
-                  */
-                
-                
-                
-			} 
-            
-            //test_signal//
-            $upload = UploadedFile::getInstance($model, 'test_signal');
-            if (!empty($upload)) {
-                $alias = Yii::getAlias("@frontend/web/uploads/test_signals");
-                BaseFileHelper::createDirectory($alias);
-                $name = time() . '.' . $upload->extension;
-                $path = $alias . DIRECTORY_SEPARATOR . $name;
-                $model->test_signal = $name;
-                $upload->saveAs($path);
-			}  
-            
-            
-            //data_sheet//    
-            $upload = UploadedFile::getInstance($model, 'data_sheet');
-            if (!empty($upload)) {
-                $alias = Yii::getAlias("@frontend/web/uploads/data_sheets");
-                BaseFileHelper::createDirectory($alias); 
-                $name = time() . '.' . $upload->extension;
-                $path = $alias . DIRECTORY_SEPARATOR . $name;
-                $model->data_sheet = $name;
-                $upload->saveAs($path);
-			}      
-                
+                $upload->saveAs($path);  
+			}                
                 
         if($model->save()){
                     //return $this->redirect(['view', 'id' => $model->id]);
@@ -180,8 +144,6 @@ class TargetsController extends Controller
         $model = $this->findModel($id);
         
         $file_target_curve = $model->target_curve;
-        $file_test_signal = $model->test_signal;
-        $file_data_sheet = $model->data_sheet;
 
         if ($this->request->isPost && $model->load($this->request->post())){
             $model->updated = date("Y-m-d h:i:s");
@@ -202,41 +164,6 @@ class TargetsController extends Controller
                 $upload->saveAs($path);
 			}else{$model->target_curve = $file_target_curve;}
 
-
-            //test_signal//
-            $upload = UploadedFile::getInstance($model, 'test_signal');
-            if($upload){
-                if(!empty($file_test_signal)) {
-                $path1 = Yii::getAlias("@frontend").'/web/uploads/test_signals/'.$file_test_signal;
-                if(file_exists($path1)){unlink($path1);}
-                }
-
-                $alias = Yii::getAlias("@frontend/web/uploads/test_signals");
-                BaseFileHelper::createDirectory($alias);
-                $name = time() . '.' . $upload->extension;
-                $path = $alias . DIRECTORY_SEPARATOR . $name;
-                $model->test_signal = $name;             
-                $upload->saveAs($path);
-			}else{$model->test_signal = $file_test_signal;}
-            
-            //data_sheet//
-            $upload = UploadedFile::getInstance($model, 'data_sheet');
-            if($upload){
-                if(!empty($file_data_sheet)) {
-                $path1 = Yii::getAlias("@frontend").'/web/uploads/data_sheets/'.$file_data_sheet;
-                if(file_exists($path1)){unlink($path1);}
-                }
-
-                $alias = Yii::getAlias("@frontend/web/uploads/data_sheets");
-                BaseFileHelper::createDirectory($alias);
-                $name = time() . '.' . $upload->extension;
-                $path = $alias . DIRECTORY_SEPARATOR . $name;
-                $model->data_sheet = $name;             
-                $upload->saveAs($path);
-			}else{$model->data_sheet = $file_data_sheet;}            
-            
-            
-   
             if($model->save()) {
                 //return $this->redirect(['view', 'id' => $model->id]);
                 return $this->redirect(['index']);
