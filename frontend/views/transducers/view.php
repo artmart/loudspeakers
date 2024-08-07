@@ -22,7 +22,7 @@ use common\components\ComplexNumber;
 
 
 $this->title = $model->model;
-$this->params['breadcrumbs'][] = ['label' => 'Targets', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Transducers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 

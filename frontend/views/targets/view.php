@@ -47,15 +47,16 @@ ChartsAsset::register($this);
             //'id',
             'target',
             'updated',
-            
+            //'file_name',
             [
                 'attribute' => 'target_curve',
                 'format' => 'raw',
+                //'name' =>'Download',
                 'value'=>  function($data) {
                         //$alias = Yii::getAlias("@frontend/web/uploads/target_curves")."/".$data->target_curve;
                         $path1 ='/uploads/target_curves/'.$data->target_curve;
                         //$btn ='<button type="submit" onclick="window.location='.$path1.';">Download</button>';
-                        $btn = '<a style="color: blue;" href="'.$path1.'" download>'.$data->target_curve.'</a>';
+                        $btn = '<a style="color: blue;" href="'.$path1.'" download>'.$data->file_name.'</a>';
 
                         return $btn;                    
                     } 

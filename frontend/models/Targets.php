@@ -73,7 +73,7 @@ class Targets extends \yii\db\ActiveRecord
             [['entered_by'], 'integer'],
             //[['size', 're', 'z1k', 'z10k', 'le', 'leb', 'ke', 'rss', 'fs', 'qms', 'qes', 'qts', 'rms', 'mms', 'cms', 'vas', 'sd', 'bl', 'pmax', 'xmax', 'beta', 'uspl', 'bl2_re', 'vocc', 'weight', 'diameter_oa', 'height_oa', 'cost'], 'number'],
             [['entry_time', 'updated'], 'safe'], //, 'target_curve_json'
-            [['target'], 'string', 'max' => 500],
+            [['target', 'file_name'], 'string', 'max' => 500],
             //[['test_signal', 'target_curve', 'data_sheet'], 'string', 'max' => 255],
             //[['status'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status' => 'id']],
             //[['type'], 'exist', 'skipOnError' => true, 'targetClass' => Types::class, 'targetAttribute' => ['type' => 'id']],
@@ -93,6 +93,7 @@ class Targets extends \yii\db\ActiveRecord
         return [        
             'id' => 'ID',
             'target' => 'Target',
+            'file_name' => 'File Name',
             /*'model' => 'Model',
             'type' => 'Type',
             'size' => 'Size [in]',

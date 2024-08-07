@@ -52,6 +52,7 @@ foreach($types as $t){
         'filterModel' => $searchModel,
         'columns' => [
             'target',
+            'file_name',
             'updated',
             //'entered_by',
             'entry_time',

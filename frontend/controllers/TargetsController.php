@@ -115,6 +115,9 @@ class TargetsController extends Controller
                 $name = time() . '.' . $upload->extension;
                 $path = $alias . DIRECTORY_SEPARATOR . $name;
                 $model->target_curve = $name;
+                
+                $model->file_name = $upload->name; 
+                
                 $upload->saveAs($path);  
 			}                
                 
@@ -160,7 +163,8 @@ class TargetsController extends Controller
                 BaseFileHelper::createDirectory($alias);
                 $name = time() . '.' . $upload->extension;
                 $path = $alias . DIRECTORY_SEPARATOR . $name;
-                $model->target_curve = $name;             
+                $model->target_curve = $name; 
+                $model->file_name = $upload->name;            
                 $upload->saveAs($path);
 			}else{$model->target_curve = $file_target_curve;}
 

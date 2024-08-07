@@ -18,7 +18,7 @@ class TargetsSearch extends Targets
     {
         return [
             [['id', 'entered_by'], 'integer'],
-            [['target', 'entry_time', 'updated'], 'safe'],
+            [['target', 'file_name', 'entry_time', 'updated'], 'safe'],
             //[['size', 're', 'z1k', 'z10k', 'le', 'leb', 'ke', 'rss', 'fs', 'qms', 'qes', 'qts', 'rms', 'mms', 'cms', 'vas', 'sd', 'bl', 'pmax', 'xmax', 'beta', 'uspl', 'bl2_re', 'vocc', 'weight', 'diameter_oa', 'height_oa', 'cost'], 'number'],
         ];
     }
@@ -99,7 +99,10 @@ class TargetsSearch extends Targets
         $query->andFilterWhere(['like', 'target', $this->target])
             //->andFilterWhere(['like', 'model', $this->model])
             //->andFilterWhere(['like', 'revision', $this->revision])
+            ->andFilterWhere(['like', 'file_name', $this->file_name])            
             ->andFilterWhere(['like', 'target_curve', $this->target_curve]);
+            
+            
             //->andFilterWhere(['like', 'test_signal', $this->test_signal])
             //->andFilterWhere(['like', 'webpage', $this->webpage])
             //->andFilterWhere(['like', 'data_sheet', $this->data_sheet]);
