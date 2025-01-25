@@ -30,6 +30,8 @@ use Shuchkin\SimpleCSV;
  */
 class UploadsController extends Controller
 {
+    
+    public $enableCsrfValidation = false;
     /**
      * @inheritDoc
      */
@@ -41,7 +43,7 @@ class UploadsController extends Controller
             
                 'access' => [
                     'class' => AccessControl::className(),
-                    //'only' => ['logout', 'signup', 'index'],
+                    //'only' => ['create', 'update', 'view', 'delete', 'index'],
                     'rules' => [
                         [
                             'actions' => ['create', 'update', 'view', 'delete', 'index'],
@@ -151,7 +153,7 @@ class UploadsController extends Controller
                                     $row[$key] = date("Y-m-d H:i:s", strtotime($row[$key]));
                                 }
                                 
-                                $transducers2->{trim($c)}= (isset($row[$key]))?$row[$key]:'';
+                                $transducers2->{trim($c)}= (isset($row[$key]))?trim($row[$key]):'';
                                 }
                             //}
                             

@@ -7,30 +7,30 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-frontend',
+    'id' => 'app-frontend1',
     'name'=>'loudspeakers',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-frontend',
+            'csrfParam' => '_csrf-frontend1',
             'baseUrl' => '',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_loudspeakers-frontend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_loudspeakers-frontend1', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
-            'name' => 'loudspeakers-frontend',
+            'name' => 'loudspeakers-frontend1',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => \yii\log\FileTarget::class,
                     'levels' => ['error', 'warning'],
                 ],
             ],
@@ -44,7 +44,7 @@ return [
             'showScriptName' => false,
             'rules' => [
             
-            
+            'csvuploads'=>'/uploads'
             
             
             ],
