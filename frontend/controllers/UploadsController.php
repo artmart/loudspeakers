@@ -146,6 +146,11 @@ class UploadsController extends Controller
                                // var_dump($row[$j]);
               //exit;
                             if(in_array($c, $cn)){
+                                
+                                if($c=='EntryDate'){
+                                    $row[$key] = date("Y-m-d H:i:s", strtotime($row[$key]));
+                                }
+                                
                                 $transducers2->{trim($c)}= (isset($row[$key]))?$row[$key]:'';
                                 }
                             //}
