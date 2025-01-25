@@ -149,7 +149,7 @@ class UploadsController extends Controller
               //exit;
                             if(in_array($c, $cn)){
                                 
-                                if($c=='EntryDate'){
+                                if($c=='EntryDate' || $c=='DataDate'){
                                     $row[$key] = date("Y-m-d H:i:s", strtotime($row[$key]));
                                 }
                                 

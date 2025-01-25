@@ -34,7 +34,7 @@ foreach($users as $user){$fullname[$user['id']]= $user['firstname']. " " . $user
     <h2><?= Html::encode($this->title) ?></h2>
     <ul class="nav navbar-right panel_toolbox">
       <!--<li> <a href="/invite" target="_blank" class="btn btn-success"><i class="fa fa-plus"></i> Create New Invite</a></li>-->
-      <?= Html::a('<i class="fa fa-plus"></i> Upload New File', ['create'], ['class' => 'btn btn-success']) ?>
+      <?= Html::a('<i class="fa fa-plus"></i> Upload New File', ['csvuploads/create'], ['class' => 'btn btn-success']) ?>
     </ul>
     <div class="clearfix"></div>
   </div>
