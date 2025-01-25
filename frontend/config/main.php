@@ -44,7 +44,8 @@ return [
             'showScriptName' => false,
             'rules' => [
             
-            'csvuploads'=>'/uploads'
+            'csvuploads'=>'/uploads',
+            'csvuploads/create'=>'/uploads/create'
             
             
             ],
