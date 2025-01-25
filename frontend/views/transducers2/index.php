@@ -7,18 +7,45 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
-/** @var frontend\models\Transducers2Search $searchModel */
+/** @var frontend\models\TransducersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Transducers2s';
+$this->title = 'Transducers';
 $this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="transducers2-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+use frontend\models\Types;
+//use frontend\models\Status;
+
+
+//$types = Types::find()->orderBy('type')->all();
+//$types_arr = [];
+//foreach($types as $t){
+//    $types_arr[$t->id]= $t->type;
+//}
+//var_dump($types_arr[2]);
+//exit;
+?>
+<div class="transducers-index">
+
+
+<div class="col-md-12 col-sm-12">
+<div class="x_panel">
+  <div class="x_title">
+    <h2><?= Html::encode($this->title) ?></h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <!--<li> <a href="/invite" target="_blank" class="btn btn-success"><i class="fa fa-plus"></i> Create New Invite</a></li>-->
+      <?= Html::a('<i class="fa fa-plus"></i> Add', ['create'], ['class' => 'btn btn-success']) ?>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="x_content">
+    <div class="table-responsive">  
+
+
 
     <p>
-        <?= Html::a('Create Transducers2', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php // Html::a('Create Transducers', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -28,170 +55,73 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'DataSource:ntext',
-            'Brand',
+            //'id',
+           // 'manufacturer',
             'Model',
             'Type',
-            //'Status',
-            //'Dnom_in',
-            //'Re',
-            //'Fs',
-            //'Qm',
-            //'Qe',
-            //'Qt',
-            //'Rm',
-            //'Mm',
-            //'Cm',
-            //'Vas',
-            //'Sd',
-            //'BL',
-            //'Pe',
-            //'Xmax',
-            //'CreepBeta',
-            //'Z1k',
-            //'Z10k',
-            //'L2',
-            //'Le',
-            //'Ke',
-            //'R2',
-            //'USPL',
-            //'Beta',
-            //'Revision',
-            //'EntryDate',
-            //'Vocc',
-            //'MassOA',
-            //'DiamOA',
-            //'HeightOA',
-            //'TargetCurve',
-            //'TestSignal',
-            //'Cost',
-            //'URL:url',
-            //'DataSheet',
+            /*
+            [
+                'attribute' => 'type',
+                //'filter'=>$types_arr, //['1'=>'Active', '2'=>'Discontinued', '3'=>'Preliminary or Vintage'],
+                'format' => 'raw',
+                //'value'=>  function($data) use ($types_arr) {
+                       //var_dump($types_arr);
+                 //       return $types_arr[$data->type];                      
+                  //  }, 
+            ],*/
+            //'size',
+            'Status',
+            /*
+            [
+                'attribute' => 'status',
+                //'filter'=>['1'=>'Active', '2'=>'Discontinued', '3'=>'Preliminary or Vintage'],
+                'format' => 'raw',
+                //'value'=>  function($data) {
+                 //       $arr_values = ['1'=>'Active', '2'=>'Discontinued', '3'=>'Preliminary or Vintage'];
+                  //      return $arr_values[$data->status];                      
+                  //  }, 
+            ],*/
+            //'re',
+            //'z1k',
+            //'z10k',
+            //'le',
+            //'leb',
+            //'ke',
+            //'rss',
+            //'fs',
+            //'qms',
+            //'qes',
+            //'qts',
+            //'rms',
+            //'mms',
+            //'cms',
+            //'vas',
+            //'sd',
+            //'bl',
+            //'pmax',
+            //'xmax',
+            //'beta',
+            //'uspl',
+            //'bl2_re',
+            //'revision',
+            //'updated',
+            //'vocc',
+            //'weight',
+            //'diameter_oa',
+            //'height_oa',
+            //'target_curve',
+            //'test_signal',
+            //'cost',
+            //'webpage',
+            //'data_sheet',
             //'entered_by',
-            //'DataDate',
-            //'Km',
-            //'Xmax_geom',
-            //'Xmax_damage',
-            //'n0',
-            //'Vd',
-            //'Res',
-            //'Cmes',
-            //'Lces',
-            //'Dd',
-            //'SPL1W',
-            //'Depth',
-            //'MotorH',
-            //'MotorDiam',
-            //'VCd',
-            //'VCMass',
-            //'Vocc_est',
-            //'Vocc_rough',
-            //'Dnom_cm',
-            //'Znom',
-            //'kLe',
-            //'fLe',
-            //'DiaphH',
-            //'Df',
-            //'fpist',
-            //'f4pi',
-            //'f2pi',
-            //'fmax',
-            //'Mair',
-            //'Mmd',
-            //'Zres',
-            //'EBP',
-            //'Gamma',
-            //'Mpow',
-            //'SPLmx',
-            //'Hc',
-            //'Hg',
-            //'AspectR',
-            //'LengthOA',
-            //'WidthOA',
-            //'F_HighRated',
-            //'F_LowRated',
-            //'VCMat',
-            //'FormerMat',
-            //'DiaphMat',
-            //'SurrMat',
-            //'SpidMat',
-            //'FrameMat',
-            //'MagMat',
-            //'DiaphShape',
-            //'MotorShape',
-            //'MotorLength',
-            //'MotorWidth',
-            //'FlangeH',
-            //'MagDiam',
-            //'MagH',
-            //'MagMass',
-            //'Bpeak',
-            //'BaffleCutoutDiam',
-            //'BaffleCutoutLength',
-            //'BaffleCutoutWidth',
-            //'BoltCircleDiam',
-            //'BoltCircleScrewDiam',
-            //'BoltCircleScrewQty',
-            //'TerminalPairsQty',
-            //'TempLowPerfRated',
-            //'TempHighPerfRated',
-            //'TempLowDamageRated',
-            //'TempHighDamageRated',
-            //'HumidityLowPerfRated',
-            //'HumidityHighPerfRated',
-            //'HumidityLowDamageRated',
-            //'HumidityHighDamageRated',
-            //'Urms_100H_Max',
-            //'Urms_Max_Rated',
-            //'Pmax_Rated',
-            //'BL1',
-            //'BL2',
-            //'BL3',
-            //'BL4',
-            //'BL5',
-            //'BL6',
-            //'BL7',
-            //'BL8',
-            //'K1',
-            //'K2',
-            //'K3',
-            //'K4',
-            //'K5',
-            //'K6',
-            //'K7',
-            //'K8',
-            //'Lx1',
-            //'Lx2',
-            //'Lx3',
-            //'Lx4',
-            //'Lx5',
-            //'Lx6',
-            //'Lx7',
-            //'Lx8',
-            //'Li1',
-            //'Li2',
-            //'Li3',
-            //'Li4',
-            //'Rmv1',
-            //'Rmv2',
-            //'Rmv3',
-            //'Rmv4',
-            //'Rtm',
-            //'Rtv',
-            //'tauC',
-            //'tauM',
-            //'Rv',
-            //'AlphaBypass',
-            //'Ctm',
-            //'Ctv',
-            //'DIY_Availability:ntext',
-            //'Application:ntext',
-            //'Notes:ntext',
+            //'entry_time',
+            'EntryDate',
             [
                 'class' => ActionColumn::className(),
+                'template'=>'{view} {update} {delete}', //
                 'urlCreator' => function ($action, Transducers2 $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
@@ -200,5 +130,10 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
     <?php Pjax::end(); ?>
+
+</div>
+</div>
+</div>
+</div>
 
 </div>

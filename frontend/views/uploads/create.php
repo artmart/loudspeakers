@@ -1,14 +1,11 @@
 <?php
 use yii\helpers\Html;
 
-$this->title = 'Create New Target';
-$this->params['breadcrumbs'][] = ['label' => 'Targets', 'url' => ['index']];
+$this->title = 'New Upload';
+$this->params['breadcrumbs'][] = ['label' => 'Uploads', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="Targets-create">
-<!--
-    <h1><?php // Html::encode($this->title) ?></h1>
--->
+<div class="uploads-create">
 <div class="col-md-12 col-sm-12">
 <div class="x_panel">
   <div class="x_title">
@@ -25,4 +22,5 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 </div>
 </div>
+
 </div>

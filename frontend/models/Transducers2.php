@@ -188,16 +188,16 @@ class Transducers2 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['DataSource', 'Type', 'Status', 'Dnom_in', 'TargetCurve', 'TestSignal', 'URL', 'entered_by'], 'required'],
+            //[['DataSource', 'Type', 'Status', 'Dnom_in', 'TargetCurve', 'TestSignal', 'URL', 'entered_by'], 'required'],
             [['DataSource', 'DIY_Availability', 'Application', 'Notes'], 'string'],
-            [['Type', 'Status', 'entered_by', 'TerminalPairsQty'], 'integer'],
+            [['entered_by', 'TerminalPairsQty', 'upload_id'], 'integer'],
             [['Dnom_in', 'Re', 'Fs', 'Qm', 'Qe', 'Qt', 'Rm', 'Mm', 'Cm', 'Vas', 'Sd', 'BL', 'Pe', 'Xmax', 'CreepBeta', 'Z1k', 'Z10k', 'L2', 'Le', 'Ke', 'R2', 'USPL', 'Beta', 'Vocc', 'MassOA', 'DiamOA', 'HeightOA', 'Cost', 'Km', 'Xmax_geom', 'Xmax_damage', 'n0', 'Vd', 'Res', 'Cmes', 'Lces', 'Dd', 'SPL1W', 'Depth', 'MotorH', 'MotorDiam', 'VCd', 'VCMass', 'Vocc_est', 'Vocc_rough', 'Dnom_cm', 'Znom', 'kLe', 'fLe', 'DiaphH', 'Df', 'fpist', 'f4pi', 'f2pi', 'fmax', 'Mair', 'Mmd', 'Zres', 'EBP', 'Gamma', 'Mpow', 'SPLmx', 'Hc', 'Hg', 'AspectR', 'LengthOA', 'WidthOA', 'F_HighRated', 'F_LowRated', 'MotorLength', 'MotorWidth', 'FlangeH', 'MagDiam', 'MagH', 'MagMass', 'Bpeak', 'BaffleCutoutDiam', 'BaffleCutoutLength', 'BaffleCutoutWidth', 'BoltCircleDiam', 'BoltCircleScrewDiam', 'BoltCircleScrewQty', 'TempLowPerfRated', 'TempHighPerfRated', 'TempLowDamageRated', 'TempHighDamageRated', 'HumidityLowPerfRated', 'HumidityHighPerfRated', 'HumidityLowDamageRated', 'HumidityHighDamageRated', 'Urms_100H_Max', 'Urms_Max_Rated', 'Pmax_Rated', 'BL1', 'BL2', 'BL3', 'BL4', 'BL5', 'BL6', 'BL7', 'BL8', 'K1', 'K2', 'K3', 'K4', 'K5', 'K6', 'K7', 'K8', 'Lx1', 'Lx2', 'Lx3', 'Lx4', 'Lx5', 'Lx6', 'Lx7', 'Lx8', 'Li1', 'Li2', 'Li3', 'Li4', 'Rmv1', 'Rmv2', 'Rmv3', 'Rmv4', 'Rtm', 'Rtv', 'tauC', 'tauM', 'Rv', 'AlphaBypass', 'Ctm', 'Ctv'], 'number'],
             [['EntryDate', 'DataDate'], 'safe'],
             [['Brand', 'Model', 'Revision', 'URL'], 'string', 'max' => 500],
-            [['TargetCurve', 'TestSignal', 'DataSheet'], 'string', 'max' => 255],
-            [['VCMat', 'FormerMat', 'DiaphMat', 'SurrMat', 'SpidMat', 'FrameMat', 'MagMat', 'DiaphShape', 'MotorShape'], 'string', 'max' => 100],
-            [['Status'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['Status' => 'id']],
-            [['Type'], 'exist', 'skipOnError' => true, 'targetClass' => Types::class, 'targetAttribute' => ['Type' => 'id']],
+            [['Type', 'TargetCurve', 'TestSignal', 'DataSheet'], 'string', 'max' => 255],
+            [['Status', 'VCMat', 'FormerMat', 'DiaphMat', 'SurrMat', 'SpidMat', 'FrameMat', 'MagMat', 'DiaphShape', 'MotorShape'], 'string', 'max' => 100],
+            //[['Status'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['Status' => 'id']],
+            //[['Type'], 'exist', 'skipOnError' => true, 'targetClass' => Types::class, 'targetAttribute' => ['Type' => 'id']],
             [['entered_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['entered_by' => 'id']],
         ];
     }
@@ -209,6 +209,7 @@ class Transducers2 extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'upload_id' => 'Upload ID',
             'DataSource' => 'Data Source',
             'Brand' => 'Brand',
             'Model' => 'Model',

@@ -25,5 +25,5 @@ class AppAsset extends AssetBundle
         'yii\bootstrap4\BootstrapAsset',
         'yii\bootstrap4\BootstrapPluginAsset',
     ];
-    public $jsOptions = [ 'position' => \yii\web\View::POS_HEAD ];
+    public $jsOptions = [ 'position' => \yii\web\View::POS_END ];
 }

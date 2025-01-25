@@ -131,11 +131,13 @@ $user_group = Yii::$app->user->identity->user_group;
                   <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>-->
                   
 <?php if($user_group==1){?>                  
-                  <li><a href="/user"><i class="fa fa-user"></i> Users</a></li>
+<li><a href="/user"><i class="fa fa-user"></i> Users</a></li>
 <?php } ?>                   
-                  <li><a href="/transducers"><i class="fa fa-volume-up"></i> Transducers</a></li>
-                  
-                   <li><a href="/targets"><i class="fa fa-volume-up"></i> Targets</a></li>
+<li><a href="/transducers"><i class="fa fa-volume-up"></i> Transducers</a></li>
+<li><a href="/targets"><i class="fa fa-volume-up"></i> Targets</a></li>
+<li><a href="/uploads/index"><i class="fa fa-upload"></i> Uploads</a></li>
+<li><a href="/transducers2"><i class="fa fa-volume-up"></i>Uploaded Transducers</a></li>                   
+                   
                   
                   <!--
                   <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
