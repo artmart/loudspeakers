@@ -136,6 +136,7 @@ class UploadsController extends Controller
                         $cn[]=$key;
                         }
                     $transducers2->upload_id = $model->id;
+                    $transducers2->entered_by = Yii::$app->user->id;
                    
                  // var_dump($cn);
               //exit;
