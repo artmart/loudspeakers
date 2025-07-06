@@ -27,6 +27,8 @@ use yii\web\Response;
  */
 class SiteController extends Controller
 {
+    public $layout='main';
+    
     /**
      * {@inheritdoc}
      */
@@ -65,7 +67,10 @@ class SiteController extends Controller
         ];
     }
     
-    public function beforeAction($action) {     $this->enableCsrfValidation = false;     return parent::beforeAction($action); }
+    public function beforeAction($action) {     
+        $this->enableCsrfValidation = false;     
+        return parent::beforeAction($action); 
+        }
 
     /**
      * {@inheritdoc}
@@ -28897,11 +28902,11 @@ $arrayVar = [
      */
     public function actionLogin()
     {
+        $this->layout = 'blank';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-        $this->layout = 'blank';
-
+        
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
@@ -28919,6 +28924,7 @@ $arrayVar = [
      */
     public function actionLogout()
     {
+        $this->layout = 'blank';
         Yii::$app->user->logout();
 
         return $this->goHome();

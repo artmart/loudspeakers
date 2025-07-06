@@ -46,7 +46,7 @@ return [
             
             'csvuploads'=>'/uploads',
             'csvuploads/create'=>'/uploads/create',
-            '/'=>'transducers2',
+            '/'=>'site',
             
             ],
         ],
