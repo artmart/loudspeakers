@@ -12,12 +12,15 @@ class AppAsset extends AssetBundle
         'vendor/font-awesome/css/font-awesome.min.css',
         'vendor/iCheck/skins/flat/green.css',	
         'build/css/custom.css',
+        'vendor/bootstrap-select/dist/css/bootstrap-select.min.css' 
     ];
     public $js = [
         "vendor/bootstrap-progressbar/bootstrap-progressbar.min.js",
         //<!-- iCheck -->
         "vendor/iCheck/icheck.min.js",
         "build/js/custom.js",
+        'vendor/bootstrap-select/dist/js/bootstrap-select.min.js'
+        
     ];
     public $depends = [
         'yii\web\YiiAsset',
@@ -25,5 +28,5 @@ class AppAsset extends AssetBundle
         'yii\bootstrap4\BootstrapAsset',
         'yii\bootstrap4\BootstrapPluginAsset',
     ];
-    public $jsOptions = [ 'position' => \yii\web\View::POS_END ];
+    public $jsOptions = [ 'position' => \yii\web\View::POS_HEAD ];
 }

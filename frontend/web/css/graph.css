@@ -1,0 +1,211 @@
+
+
+
+[data-graph-size="normal"] > div > svg {
+  cursor: default !important;
+}
+
+[data-graph-size="normal"] #graph_tone_burst_f {
+  width: 38px; 
+  position: absolute;
+  left: 438px;
+  top: 8px;
+  z-index: 1;
+}
+
+[data-graph-size="normal"] #graph_tone_burst_cycles {
+  width: 30px; 
+  position: absolute;
+  left: 530px;
+  top: 9px;
+  z-index: 1;
+}
+
+
+
+/* .echarts_tooltip {
+  border: 1px solid red;
+} */
+
+.echarts_tooltip {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 4px;
+  padding: 3px 3px 2px 3px;
+}
+
+.echarts_tooltip .head.value{
+  grid-column: 1 / 3;
+}
+
+.echarts_tooltip .name {
+  /* top | right | bottom | left */
+  padding: 0 10px 0 0;
+}
+
+.echarts_tooltip .value {
+  text-align: right; 
+  font-weight: bold;
+}
+
+.echarts_tooltip .units {
+  padding: 0 0 0 2px;
+}
+
+
+
+#graph_options {
+  --grid-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#graph_options.hide {
+  display: none;
+}
+
+#graph_options .grid {
+  display: grid; 
+  grid-template-columns: repeat(3, auto) 50px repeat(3, 30px) 205px; 
+  grid-template-rows: auto repeat(8, var(--grid-height)); 
+  gap: 5px 10px; 
+  grid-template-areas: 
+    ". . . . . . . k"
+    ". . . . . . . k"
+    ". . . . . . . k"
+    ". . . . . . . k"
+    ". . . . d . . k"
+    ". . . . d p c k"
+    ". . . . d p c k"
+    ". . . . d p c k"
+    ". . . . d p c k"
+    ". . . . . . . ."
+    ". . . a a a a ."
+    ; 
+  justify-content: start; 
+  align-content: stretch; 
+  justify-items: start; 
+  align-items: stretch; 
+  /* background-color: blueviolet; */
+  padding-bottom: 12px;
+}
+
+#graph_options .d {grid-area: d;}
+#graph_options .p {grid-area: p;}
+#graph_options .c {grid-area: c;}
+#graph_options .k {grid-area: k;}
+#graph_options .a {
+  grid-area: a;
+  width: 170px;
+  display: grid;
+  grid-auto-flow: column; 
+  grid-auto-rows: auto; 
+  gap: 0px 0px; 
+  justify-items: end; 
+  padding-top: 5px;
+}
+
+#graph_options div {
+  line-height: var(--grid-height);
+}
+
+
+/* #graph_options .vertical-text {
+  height: 60px;
+  width: 28px;
+  transform: 
+    translate(16px, 29px)
+    rotate(315deg);
+} */
+#graph_options .vertical-text {
+  height: 80px;
+  width:  25px;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+#graph_options .color {
+  width:  100%;
+  height: 100%; 
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid rgb(0 0 0 / 20%);
+}
+
+#graph_options .color.selected {
+  border: 2px solid rgb(0, 0, 0);
+}
+
+#graph_options #graph_elec_imp_color {
+  background-color: green;}
+#graph_options #graph_elec_phase_color {
+  background-color: greenyellow;}
+#graph_options #graph_driver_color {
+  background-color: blue;}
+#graph_options #graph_port_color {
+  background-color: brown;}
+#graph_options #graph_combined_color {
+  background-color: purple;}
+
+#graph_options input.int_only {
+  width: 55px;
+}
+
+
+#graph_options #color_picker {
+  position: relative;
+  width: 203px;
+  height: 100%;
+}
+
+#graph_options #color_picker .color-picker {
+  width: 180px;
+  height: 266px;
+  position: absolute;
+  bottom: 0;
+  top: unset;
+  left: unset;
+  right: 0;
+  transform: unset;
+  box-shadow: 
+    0 3px 1px -2px rgb(0 0 0 /  0%), 
+    0 2px 2px  0   rgb(0 0 0 / 14%), 
+    0 1px 5px  0   rgb(0 0 0 / 12%);
+}
+
+#graph_options #color_picker .color-picker .color-picker-wheel-control::after {
+  box-sizing: content-box;
+  /* margin: 0px; */
+  /* border-width: 1px; */
+}
+
+#graph_options #color_picker [data-theme=light] {
+  --base-background-color: rgb(255, 255, 255);
+  --thumb-border-color: rgba(255, 255, 255, 0.7);
+  --color-wheel-control-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75) inset;
+  --brightness-control-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.35) inset;
+  --input-controls-tab-header-background-color: rgb(245, 245, 245);
+  --input-controls-tab-header-font-color: rgb(0, 0, 0);
+  --input-controls-tab-background-color: rgb(215, 215, 215);
+  --range-input-control-background-color: rgb(215, 215, 215);
+  --range-input-control-background-color--focused: rgb(215, 215, 215);
+  --range-input-control-font-color: rgb(0, 0, 0);
+  --range-input-control-selection-color: rgb(255, 255, 255);
+  --range-input-control-progress-color: rgb(255 255 255);
+  --text-input-control-background-color: rgb(215, 215, 215);
+  --text-input-control-background-color--focused: rgb(215, 215, 215);
+  --text-input-control-font-color: rgb(0, 0, 0);
+  --text-input-control-selection-color: rgb(255, 255, 255);
+}
+
+
+#graph_options .button {
+  padding: 2px 14px;
+}
+
+.datasheet {
+  padding-top: 15px;
+  display: grid;
+  justify-content: end;
+}

@@ -17,9 +17,11 @@ class Transducers2Search extends Transducers2
     public function rules()
     {
         return [
-            [['id', 'Type', 'Status', 'entered_by', 'TerminalPairsQty'], 'integer'],
-            [['DataSource', 'Brand', 'Model', 'Revision', 'EntryDate', 'TargetCurve', 'TestSignal', 'URL', 'DataSheet', 'DataDate', 'VCMat', 'FormerMat', 'DiaphMat', 'SurrMat', 'SpidMat', 'FrameMat', 'MagMat', 'DiaphShape', 'MotorShape', 'DIY_Availability', 'Application', 'Notes'], 'safe'],
+            [['id', 'Status', 'entered_by', 'TerminalPairsQty'], 'integer'], //, 
+            [['DataSource',  'Model', 'Revision', 'EntryDate', 'TargetCurve', 'TestSignal', 'URL', 'DataSheet', 'DataDate', 'VCMat', 'FormerMat', 'DiaphMat', 'SurrMat', 'SpidMat', 'FrameMat', 'MagMat', 'DiaphShape', 'MotorShape', 'DIY_Availability', 'Application', 'Notes'], 'safe'],
             [['Dnom_in', 'Re', 'Fs', 'Qm', 'Qe', 'Qt', 'Rm', 'Mm', 'Cm', 'Vas', 'Sd', 'BL', 'Pe', 'Xmax', 'CreepBeta', 'Z1k', 'Z10k', 'L2', 'Le', 'Ke', 'R2', 'USPL', 'Beta', 'Vocc', 'MassOA', 'DiamOA', 'HeightOA', 'Cost', 'Km', 'Xmax_geom', 'Xmax_damage', 'n0', 'Vd', 'Res', 'Cmes', 'Lces', 'Dd', 'SPL1W', 'Depth', 'MotorH', 'MotorDiam', 'VCd', 'VCMass', 'Vocc_est', 'Vocc_rough', 'Dnom_cm', 'Znom', 'kLe', 'fLe', 'DiaphH', 'Df', 'fpist', 'f4pi', 'f2pi', 'fmax', 'Mair', 'Mmd', 'Zres', 'EBP', 'Gamma', 'Mpow', 'SPLmx', 'Hc', 'Hg', 'AspectR', 'LengthOA', 'WidthOA', 'F_HighRated', 'F_LowRated', 'MotorLength', 'MotorWidth', 'FlangeH', 'MagDiam', 'MagH', 'MagMass', 'Bpeak', 'BaffleCutoutDiam', 'BaffleCutoutLength', 'BaffleCutoutWidth', 'BoltCircleDiam', 'BoltCircleScrewDiam', 'BoltCircleScrewQty', 'TempLowPerfRated', 'TempHighPerfRated', 'TempLowDamageRated', 'TempHighDamageRated', 'HumidityLowPerfRated', 'HumidityHighPerfRated', 'HumidityLowDamageRated', 'HumidityHighDamageRated', 'Urms_100H_Max', 'Urms_Max_Rated', 'Pmax_Rated', 'BL1', 'BL2', 'BL3', 'BL4', 'BL5', 'BL6', 'BL7', 'BL8', 'K1', 'K2', 'K3', 'K4', 'K5', 'K6', 'K7', 'K8', 'Lx1', 'Lx2', 'Lx3', 'Lx4', 'Lx5', 'Lx6', 'Lx7', 'Lx8', 'Li1', 'Li2', 'Li3', 'Li4', 'Rmv1', 'Rmv2', 'Rmv3', 'Rmv4', 'Rtm', 'Rtv', 'tauC', 'tauM', 'Rv', 'AlphaBypass', 'Ctm', 'Ctv'], 'number'],
+            [['Brand', 'Type'], 'each', 'rule' => ['safe']],
+        
         ];
     }
 
@@ -42,7 +44,8 @@ class Transducers2Search extends Transducers2
     public function search($params)
     {
         $query = Transducers2::find();
-
+        //var_dump($this->Brand);
+        //exit;
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -60,7 +63,7 @@ class Transducers2Search extends Transducers2
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'Type' => $this->Type,
+            //'Type' => $this->Type,
             'Status' => $this->Status,
             'Dnom_in' => $this->Dnom_in,
             'Re' => $this->Re,
@@ -202,7 +205,7 @@ class Transducers2Search extends Transducers2
         ]);
 
         $query->andFilterWhere(['like', 'DataSource', $this->DataSource])
-            ->andFilterWhere(['like', 'Brand', $this->Brand])
+            //->andFilterWhere(['like', 'Brand', $this->Brand])
             ->andFilterWhere(['like', 'Model', $this->Model])
             ->andFilterWhere(['like', 'Revision', $this->Revision])
             ->andFilterWhere(['like', 'TargetCurve', $this->TargetCurve])
@@ -221,6 +224,10 @@ class Transducers2Search extends Transducers2
             ->andFilterWhere(['like', 'DIY_Availability', $this->DIY_Availability])
             ->andFilterWhere(['like', 'Application', $this->Application])
             ->andFilterWhere(['like', 'Notes', $this->Notes]);
+            
+        $query->andFilterWhere(['like', 'DataSource', $this->DataSource])
+            ->andFilterWhere(['in', 'Brand', $this->Brand])
+            ->andFilterWhere(['in', 'Type', $this->Type]);
 
         return $dataProvider;
     }

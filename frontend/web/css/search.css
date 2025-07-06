@@ -1,0 +1,144 @@
+.search {
+  display: grid; 
+  grid-template-columns: 400px 811px; 
+  justify-content: space-between; 
+  grid-template-areas:
+    "header header"
+    "parameters results"
+    "parameters next_page";
+  padding-bottom: 40px;
+}
+
+.header { 
+  grid-area: header; 
+  text-align: right;
+  padding-bottom: 6px;
+  padding-right: 5px;
+}
+
+.next_page { 
+  grid-area: next_page; 
+}
+
+.search .parameters {
+  grid-area: parameters; 
+  display: grid; 
+  grid-template-columns: max-content minmax(auto, 1fr) max-content max-content; 
+  grid-auto-rows: min-content;
+  row-gap: 2px;
+  width: 400px;
+  --line-height: normal;
+}
+
+.search .parameters .grid_container{
+  display: contents;
+}
+
+.search .parameters .dropdown {
+  grid-column: span 4;
+  margin-bottom: 10px;
+}
+
+.search .parameters h3 {
+  grid-column: span 4;
+  margin-bottom: 10px;
+}
+
+.search .parameters .sort {
+  width: 14px;
+  text-align: center;
+  cursor: pointer;
+  line-height: var(--line-height);
+  padding: 0px 0px;
+}
+
+.search .parameters .name {
+  line-height: var(--line-height);
+  padding-left: 4px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.search .parameters .name .symbol {
+  float: right;
+  font-weight: bold;
+}
+
+.search .parameters .inputs {
+  line-height: var(--line-height);
+  padding: 0px 4px;
+}
+
+.search .parameters .inputs input {
+  width: 50px;
+  text-align: right;
+  padding: 0px 2px 0px 2px;
+  margin: 0px 1px 0px 1px;
+  /* margin: 0px; */
+}
+
+.search .parameters .units {
+  line-height: var(--line-height);
+  border-radius: 0px 5px 5px 0px;
+}
+
+.search .parameters .slider {
+  grid-column: span 4;
+  margin-bottom: 10px;
+}
+
+.search .parameters .slider.noUi-target {
+  border-radius: 0px;
+  border: 0px solid #D3D3D3;
+  box-shadow: unset;
+}
+
+.search .parameters .slider .noUi-base {
+  background-size: 100%;
+}
+
+.search .parameters .slider .noUi-connects {
+  border-radius: 0px;
+}
+
+.search .parameters .slider .noUi-connect {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.search .parameters .slider .noUi-handle {
+  width: 2px;
+  height: 18px;
+  right: -1px;
+  top: -0px;
+}
+
+.search .parameters .slider .noUi-handle:before  {
+  display: none;
+}
+
+.search .parameters .slider .noUi-handle::after  {
+  display: none;
+}
+
+.search .parameters .slider .noUi-handle {
+  border: unset;
+  border-radius: unset;
+  background: #000;
+  box-shadow: unset;
+}
+
+
+
+.search .parameters .adsbygoogle {
+  grid-column: span 4;
+  margin-top: 20px;
+}
+
+
+.search .results {
+  grid-area: results; 
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 7px 7px;
+  justify-content: start;
+  height: fit-content;
+}

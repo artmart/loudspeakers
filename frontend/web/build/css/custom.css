@@ -1294,7 +1294,7 @@ a:hover, a:focus {
 
 .dropdown-item {
   width: 100%;
-  padding: 12px 20px; }
+  padding: 1px 20px; }
 
 .top_nav li a i {
   font-size: 15px; }
@@ -4978,4 +4978,8 @@ ul.notifications {
 
 .tableheader table thead th a  {
   color: #fff;
+}
+
+.table thead th {
+  border-bottom: none;
 }

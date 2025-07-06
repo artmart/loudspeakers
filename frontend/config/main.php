@@ -45,7 +45,8 @@ return [
             'rules' => [
             
             'csvuploads'=>'/uploads',
-            'csvuploads/create'=>'/uploads/create'
+            'csvuploads/create'=>'/uploads/create',
+            '/'=>'transducers2',
             
             ],
         ],

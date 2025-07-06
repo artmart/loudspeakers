@@ -1,0 +1,157 @@
+/* Results */
+
+/* use a class instead */
+#results { 
+	/* background: blue; 
+	width: 845px;*/
+	display: grid; 
+  grid-template-columns: 420px 420px; 
+  gap: 5px 5px; 
+  justify-content: space-between; 
+  align-content: start;
+}
+
+/* Woofer Card */
+
+.woofer_card {
+	width: 33%;
+	padding: 4px;
+	border: 1px solid rgba(36,36,36,.15);
+	border-radius: 5px;
+	box-shadow: 
+		0px 0px 8px 0 rgb(36 36 36 / 15%);
+	float: left;
+	/*margin: 1px;*/
+	border-color: #1D78BE;
+}
+
+.woofer_card.opened_in_a_tab {
+	box-shadow: 
+		0px 0px 8px 0 rgb(33 116 208 / 100%);
+	transition: 0.1s ease box-shadow;
+}
+
+.woofer_card.closed_tab {
+	animation: closed_tab 120s ease;
+}
+
+@keyframes closed_tab {
+  0% { 
+		box-shadow: 
+		0px 0px 8px 0 rgb(255 0 0 / 80%);
+	}
+	10% {
+		box-shadow: 
+			0px 0px 8px 0 rgb(255 0 0 / 100%);
+		}
+}
+
+
+/* Photos and Graphs */
+
+.woofer_card .photos_and_graphs {
+    --graph-ratio: 1.8;
+    --height: 130px;
+    width: 100%;
+    height: var(--height);
+    aspect-ratio: 3.03;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    grid-template-rows: 100%;
+    justify-content: space-between;
+}
+
+.woofer_card .photos_and_graphs .photo img{
+	max-width:  124px;
+	max-height: 124px;
+	display: block;
+}
+
+.woofer_card .photos_and_graphs .graph [data-graph] {
+	width:  100%; /* 100% don't works with echart */
+	height: 130px;
+	display: block;
+}
+
+.woofer_card .photos_and_graphs .graph img {
+	width:  100%;
+	height: 130px; /* 100% is more than 130px !? (134.333px) */
+	display: none;
+}
+
+
+/* Driver Data */
+
+.woofer_card .driver_data {
+	display: grid;
+	grid-template-columns: repeat(6, auto);
+	grid-template-rows: repeat(4, auto);
+	column-gap: 0px;
+	row-gap: 5px;
+	grid-template-areas: 
+    "t t t t t t"
+    "s s . . . ."
+    "f f . . . ."
+    ". . . . . ."; 
+
+	padding-top: 		6px;
+	padding-bottom: 0px;
+	padding-left: 	0px;
+}
+
+.woofer_card .driver_data .brand_ref_imp { 
+	grid-area: t;
+	font-size: 1.2em;
+	/* padding-left: 5px; */
+
+	display: grid;
+	grid-template-columns: auto auto;
+  gap: 0px 8px;
+  justify-content: space-between;
+}
+
+.woofer_card .driver_data .fr { 
+	grid-area: f;
+}
+
+.woofer_card .driver_data .size_type { 
+	grid-area: s;
+}
+
+.woofer_card .driver_data .symbol {
+	text-align: right;
+}
+
+.woofer_card .driver_data span:not(span.sub) {
+	padding-right: 5px;
+	padding-left:  5px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(255, 0, 0, 0);
+	border-radius: 4px;
+}
+
+.woofer_card .driver_data .symbol span:not(span.sub) {
+  padding-right: 4px;
+	border-right-width: 0px;
+	border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.woofer_card .driver_data .value span:not(span.sub) {
+	padding-left: 4px;
+	border-left-width: 0px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+/* .woofer_card .driver_data span.highlighted {
+	border-color: #cce2ff;
+} */
+
+/* .woofer_card .driver_data span.highlighted:is(.z, .fr, .spl, .fs, .qts, .pmax, .xmax) { */
+.woofer_card .driver_data span.highlighted.on_chart {
+	border-color: #6aabff;
+}
+
+

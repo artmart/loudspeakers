@@ -38,10 +38,26 @@ class Transducers2Controller extends Controller
      */
     public function actionIndex()
     {
+        
+       // var_dump($this->request->queryParams);
+        
+        $searchModel = new Transducers2Search();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->pagination->pageSize=15;
+        $dataProvider->sort->defaultOrder = ['id' =>SORT_ASC];
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    public function actionAll()
+    {
         $searchModel = new Transducers2Search();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('index_grid', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

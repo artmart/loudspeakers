@@ -136,7 +136,7 @@ $user_group = Yii::$app->user->identity->user_group;
 <li><a href="/transducers"><i class="fa fa-volume-up"></i> Transducers</a></li>
 <li><a href="/targets"><i class="fa fa-volume-up"></i> Targets</a></li>
 <li><a href="/csvuploads"><i class="fa fa-upload"></i> Uploads</a></li>
-<li><a href="/transducers2"><i class="fa fa-volume-up"></i>Uploaded Transducers</a></li>                   
+<li><a href="/transducers2/all"><i class="fa fa-volume-up"></i>Uploaded Transducers</a></li>                   
                    
                   
                   <!--
@@ -256,9 +256,11 @@ $user_group = Yii::$app->user->identity->user_group;
             		$file = Yii::getAlias('@frontend/web/uploads/') . Yii::$app->user->identity->profile_photo;
                     
                     $screen_path = '/uploads/'.Yii::$app->user->identity->profile_photo;
-            		if (file_exists($file) && Yii::$app->user->identity->profile_photo){
-           			  echo Html::img($screen_path, ['width' => '200px', 'alt3'=> Yii::$app->user->identity->firstname]);
-            		}else{ ?>
+            		if (file_exists($file) && Yii::$app->user->identity->profile_photo){ 
+            		  //echo Html::img($screen_path, ['width' => '200px', 'alt'=> Yii::$app->user->identity->firstname]); ?>
+                    <img src="<?=$file;?>" alt="">
+           			  
+            		<?php }else{ ?>
           		    <img src="/img/user.png" alt="">
             		<?php } ?>                    
                   </a>
