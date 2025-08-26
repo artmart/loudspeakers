@@ -1,405 +1,107 @@
-<style>
-/* Hide the spin buttons in WebKit browsers */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+ <?php var_dump($vsort);?>
+<div class="row"> 
 
-        /* Hide spin buttons in Firefox */
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-
- .input-container {
-    position: relative;
-    display: inline-block;
-}
-.sort-icon {
-    position: absolute;
-    right: 10px; /* Adjust as needed */
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-.noUi-horizontal .noUi-handle {
-  width: 5px;
-  height: 37px;
-  right: 0px;
-  top: -2px;
-  color: black;
-  background: black;
-}
-
-.noUi-handle {
-  border: 1px solid #000;
-  border-radius: 0px;
-  background: #FFF;
-  cursor: default;
-  box-shadow: none; /*inset 0 0 1px #FFF,inset 0 1px 0px #EBEBEB,0 3px 6px -3px #BBB;*/
-}
-
-.noUi-handle:before, .noUi-handle:after {
-display: none;
-}
-.noUi-target{
-  border-radius: 0px;  
-  border: none;
-  background: #a7aaac;
-  box-shadow: none;
-  height: 33px;
-}
-
-.noUi-connect {
-  background: var(--blue);
-}
-
-</style>
-
-<?php
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use frontend\models\Transducers2;
-use yii\helpers\ArrayHelper;
-
-$tds2 = Transducers2::find()->distinct()->all();
-$Brands = ArrayHelper::map($tds2,'Brand','Brand');
-$Types = ArrayHelper::map($tds2,'Type','Type');
-
-var_dump($model->height_oa_sort);
-?>
-<section class="results1">
-<div class="transducers2-search">
-
-<?php $form = ActiveForm::begin(['id' => 'pjax_form1', 'action' => ['index'], 'method' => 'get',  'options' => ['data-pjax' => false]]); ?>
-
-
-
-<div class="row">
-<div class="col-md-12">
-    <div class="col-md-3">
-        <?php // $form->field($model, 'Brand') ?>
-
-        <?= $form->field($model, 'Brand')->dropDownList($Brands, ['multiple' => true, 'class'=>'selectpicker form-control', 'selected' => true]); ?>
-   
+<div class="col-sm-12">
+    <label class="col-sm-7" for="<?=$label;?>">
+        <div class="input-container">
+            <input type="hidden" id="sortableInput<?=$field;?>" name="Transducers2Search[<?=$field.'_sort';?>]" value="<?=$vsort;?>" placeholder="Enter text to sort">
+            <i class="sort-icon fa fa-sort fa-1x mb-1" id="sortIcon<?=$field;?>"></i>
+        </div> 
+        <strong><?=$label;?></strong>
+    </label> 
+           
+    <div class="col-sm-5 d-grid gap-2 d-md-flex justify-content-md-end">
+        <label class="d-flex justify-content-start mr-1" for="<?=$short_label;?>"><strong><?=$short_label;?></strong></label>
+        <div class="d-flex align-items-center mb-1">
+            <input type="number" step="1" id="input-lower<?=$field;?>" name="Transducers2Search[<?=$field.'_min';?>]">
+            <input type="number" step="1" id="input-upper<?=$field;?>" name="Transducers2Search[<?=$field.'_max';?>]">
+        </div>
+        <strong> <?=$mesure;?></strong>
     </div>
-    <div class="col-md-3">
-        <?php // $form->field($model, 'Type') ?>
-        <?= $form->field($model, 'Type')->dropDownList($Types, ['multiple' => true, 'class'=>'selectpicker form-control', 'selected' => true]); ?>
-    </div>
-    <div class="col-md-3">  
-    <?=$this->render('slider_field', ['model' => $model, 'field'=>'mass_oa', 'label'=>'Mass OA', 'short_label'=>'MMS', 'mesure'=>'g', 'max'=>'50', 
-                                      'vmin'=>$model->mass_oa_min, 'vmax'=>$model->mass_oa_max, 'vsort'=>$model->mass_oa_sort]); ?>
-    </div>
-    <div class="col-md-3">  
-    <?=$this->render('slider_field', ['model' => $model, 'field' => 'diam_oa', 'label'=>'Diam OA', 'short_label'=>'', 'mesure'=>'mm', 'max'=>'1000', 
-                                      'vmin'=>$model->diam_oa_min, 'vmax'=>$model->diam_oa_max, 'vsort'=>$model->diam_oa_sort]); ?>
-    </div>
-    
-    
-</div>
+    <div class="row1 col-sm-12"  id="my-slider<?=$field;?>"></div>
 
-
-</div>  
-<div class="row">
-<div class="col-md-12">
-    <div class="col-md-3">  
-    <?=$this->render('slider_field', ['model' => $model, 'field' => 'height_oa', 'label'=>'Height OA', 'short_label'=>'', 'mesure'=>'mm', 'max'=>'500', 
-                                      'vmin'=>$model->height_oa_min, 'vmax'=>$model->height_oa_max, 'vsort'=>$model->height_oa_sort]); ?>
-    </div>
-    <div class="col-md-3">  
-    <?=$this->render('slider_field', ['model' => $model, 'field' => 'pmax_rated', 'label'=>'Pmax Rated', 'short_label'=>'Pmax', 'mesure'=>'W', 'max'=>'10000', 
-                                      'vmin'=>$model->pmax_rated_min, 'vmax'=>$model->pmax_rated_max, 'vsort'=>$model->pmax_rated_sort]); ?>
-    </div>
-    <div class="col-md-3">  
-    <?=$this->render('slider_field', ['model' => $model, 'field' => 'cost', 'label'=>'Cost', 'short_label'=>'$', 'mesure'=>'USD', 'max'=>'1000', 
-                                      'vmin'=>$model->cost_min, 'vmax'=>$model->cost_max, 'vsort'=>$model->cost_sort]); ?>
-    </div>
-    <div class="col-md-3">  
-    <div class="form-group">
-        <?php echo Html::submitButton('Search', ['class' => 'btn btn-primary w-100', 'style'=>'margin-top: 25px; background: var(--blue);']) ?>
-        <?php // Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
-    </div>    
-    </div>
 </div>
 </div>
-  
-  
-
-  
-<?php  /*?>   
- <style>
-     .input-container {
-        position: relative;
-        display: inline-block;
-    }
-    .sort-icon {
-        position: absolute;
-        right: 10px; 
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
- </style>   
-    <div class="input-container">
-        <input type="text" id="sortableInput" name="sortableInput" placeholder="Enter text to sort">
-        <i class="sort-icon fa fa-sort fa-2x" id="sortIcon"></i>
-    </div>    
-    
-   <script>
-       document.getElementById('sortIcon').addEventListener('click', function() {
-        const inputField = document.getElementById('sortableInput');
-        const data = ['apple', 'orange', 'banana']; // Example data
-        let sortOrder = 'asc'; // Manage sort state
-
-        // Toggle sort order
-        if (this.classList.contains('fa-sort-amount-asc')) {
-            this.classList.remove('fa-sort-amount-asc');
-            this.classList.add('fa-sort-amount-desc');
-            sortOrder = 'desc';
-        } else {
-            this.classList.remove('fa-sort-amount-desc');
-            this.classList.add('fa-sort-amount-asc');
-            sortOrder = 'asc';
-        }
-
-        // Implement sorting logic based on input value or related data
-        if (sortOrder === 'asc') {
-            data.sort();
-        } else {
-            data.sort().reverse();
-        }
-
-        console.log("Sorted data:", data); // Display or update UI with sorted data
-    });
-   </script> 
-    
-    
-    
-    
-    
-    
-    
-      
-            <?php echo $form->field($model, 'MassOA') ?>
-   
-    <div class="col-md-3">
-        <?php echo $form->field($model, 'DiamOA') ?>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <?php echo $form->field($model, 'HeightOA') ?>
-    </div> 
-    <div class="col-md-4">   
-            <?php echo $form->field($model, 'Cost') ?>
-    </div>
-    <div class="col-md-4">    
-            <?php echo $form->field($model, 'Pmax_Rated') ?>
-    </div>
-</div>
 
 
-<div id="my-slider"></div>
-    <input type="number" step="1" id="input-lower" name="Transducers2Search[height_oa_min]">
-    <input type="number" step="1" id="input-upper" name="Transducers2Search[height_oa_max]">
 
 
 <script>
-    var slider = document.getElementById('my-slider');
-    noUiSlider.create(slider, {
-        start: [20, 80], // Initial values for two handles
+    let ths<?=$field;?> = document.getElementById('sortIcon<?=$field;?>');
+    if('<?=$vsort;?>'=='SORT_ASC'){
+        
+        ths<?=$field;?>.classList.remove('fa-sort-amount-desc');
+        ths<?=$field;?>.classList.add('fa-sort-amount-asc');
+    }else{
+        ths<?=$field;?>.classList.remove('fa-sort-amount-asc');
+        ths<?=$field;?>.classList.add('fa-sort-amount-desc');
+    }
+
+
+
+   document.getElementById('sortIcon<?=$field;?>').addEventListener('click', function() {
+    const inputField<?=$field;?> = document.getElementById('sortableInput<?=$field;?>');
+
+    let sortOrder = '<?=$vsort;?>'; // Manage sort state
+
+    // Toggle sort order
+    if (this.classList.contains('fa-sort-amount-asc')) {
+        this.classList.remove('fa-sort-amount-asc');
+        this.classList.add('fa-sort-amount-desc');
+        sortOrder = 'SORT_DESC';
+    } else {
+        this.classList.remove('fa-sort-amount-desc');
+        this.classList.add('fa-sort-amount-asc');
+        sortOrder = 'SORT_ASC';
+    }
+    $("#sortableInput<?=$field;?>").val(sortOrder);
+    // Implement sorting logic based on input value or related data
+   // if (sortOrder === 'asc') {
+    //    data.sort();
+    //} else {
+     //   data.sort().reverse();
+    //}
+
+    //console.log("Sorted data:", data); // Display or update UI with sorted data
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+    var slider<?=$field;?> = document.getElementById('my-slider<?=$field;?>');
+    noUiSlider.create(slider<?=$field;?>, {
+        start: [<?=$vmin;?>, <?=$vmax;?>], // Initial values for two handles
         connect: true,
         'step': 1,
         range: {
             'min': 0,
-            'max': 100,  
+            'max': <?=$max;?>,  
         },
         //tooltips: [wNumb({decimals: 1}), true],
     });
 
 
-    var inputLower = document.getElementById('input-lower');
-    var inputUpper = document.getElementById('input-upper');
+    var inputLower<?=$field;?> = document.getElementById('input-lower<?=$field;?>');
+    var inputUpper<?=$field;?> = document.getElementById('input-upper<?=$field;?>');
 
-    slider.noUiSlider.on('update', function (values, handle) {
+    slider<?=$field;?>.noUiSlider.on('update', function (values, handle) {
         if (handle === 0) {
-            inputLower.value = values[handle];
+            inputLower<?=$field;?>.value = values[handle];
         } else {
-            inputUpper.value = values[handle];
+            inputUpper<?=$field;?>.value = values[handle];
         }
     });
     
-    inputLower.addEventListener('change', function () {
-        slider.noUiSlider.set([this.value, null]); // Set lower handle, upper handle unchanged
+    inputLower<?=$field;?>.addEventListener('change', function () {
+        slider<?=$field;?>.noUiSlider.set([this.value, null]); // Set lower handle, upper handle unchanged
     });
 
-    inputUpper.addEventListener('change', function () {
-        slider.noUiSlider.set([null, this.value]); // Set upper handle, lower handle unchanged
+    inputUpper<?=$field;?>.addEventListener('change', function () {
+        slider<?=$field;?>.noUiSlider.set([null, this.value]); // Set upper handle, lower handle unchanged
     });
 </script>
 
 
 
-
-
-    <?php */ // echo $form->field($model, 'Status') ?>
-    <?php // echo $form->field($model, 'Dnom_in') ?>
-    <?php // echo $form->field($model, 'Re') ?>
-    <?php // echo $form->field($model, 'Fs') ?>
-    <?php // echo $form->field($model, 'Qm') ?>
-    <?php // echo $form->field($model, 'Qe') ?>
-    <?php // echo $form->field($model, 'Qt') ?>
-    <?php // echo $form->field($model, 'Rm') ?>
-    <?php // echo $form->field($model, 'Mm') ?>
-    <?php // echo $form->field($model, 'Cm') ?>
-    <?php // echo $form->field($model, 'Vas') ?>
-    <?php // echo $form->field($model, 'Sd') ?>
-    <?php // echo $form->field($model, 'BL') ?>
-    <?php // echo $form->field($model, 'Pe') ?>
-    <?php // echo $form->field($model, 'Xmax') ?>
-    <?php // echo $form->field($model, 'CreepBeta') ?>
-    <?php // echo $form->field($model, 'Z1k') ?>
-    <?php // echo $form->field($model, 'Z10k') ?>
-    <?php // echo $form->field($model, 'L2') ?>
-    <?php // echo $form->field($model, 'Le') ?>
-    <?php // echo $form->field($model, 'Ke') ?>
-    <?php // echo $form->field($model, 'R2') ?>
-    <?php // echo $form->field($model, 'USPL') ?>
-    <?php // echo $form->field($model, 'Beta') ?>
-    <?php // echo $form->field($model, 'Revision') ?>
-    <?php // echo $form->field($model, 'EntryDate') ?>
-    <?php // echo $form->field($model, 'Vocc') ?>
-    <?php // echo $form->field($model, 'TargetCurve') ?>
-    <?php // echo $form->field($model, 'TestSignal') ?>
-    <?php // echo $form->field($model, 'URL') ?>
-    <?php // echo $form->field($model, 'DataSheet') ?>
-    <?php // echo $form->field($model, 'entered_by') ?>
-    <?php // echo $form->field($model, 'DataDate') ?>
-    <?php // echo $form->field($model, 'Km') ?>
-    <?php // echo $form->field($model, 'Xmax_geom') ?>
-    <?php // echo $form->field($model, 'Xmax_damage') ?>
-    <?php // echo $form->field($model, 'n0') ?>
-    <?php // echo $form->field($model, 'Vd') ?>
-    <?php // echo $form->field($model, 'Res') ?>
-    <?php // echo $form->field($model, 'Cmes') ?>
-    <?php // echo $form->field($model, 'Lces') ?>
-    <?php // echo $form->field($model, 'Dd') ?>
-    <?php // echo $form->field($model, 'SPL1W') ?>
-    <?php // echo $form->field($model, 'Depth') ?>
-    <?php // echo $form->field($model, 'MotorH') ?>
-    <?php // echo $form->field($model, 'MotorDiam') ?>
-    <?php // echo $form->field($model, 'VCd') ?>
-    <?php // echo $form->field($model, 'VCMass') ?>
-    <?php // echo $form->field($model, 'Vocc_est') ?>
-    <?php // echo $form->field($model, 'Vocc_rough') ?>
-    <?php // echo $form->field($model, 'Dnom_cm') ?>
-    <?php // echo $form->field($model, 'Znom') ?>
-    <?php // echo $form->field($model, 'kLe') ?>
-    <?php // echo $form->field($model, 'fLe') ?>
-    <?php // echo $form->field($model, 'DiaphH') ?>
-    <?php // echo $form->field($model, 'Df') ?>
-    <?php // echo $form->field($model, 'fpist') ?>
-    <?php // echo $form->field($model, 'f4pi') ?>
-    <?php // echo $form->field($model, 'f2pi') ?>
-    <?php // echo $form->field($model, 'fmax') ?>
-    <?php // echo $form->field($model, 'Mair') ?>
-    <?php // echo $form->field($model, 'Mmd') ?>
-    <?php // echo $form->field($model, 'Zres') ?>
-    <?php // echo $form->field($model, 'EBP') ?>
-    <?php // echo $form->field($model, 'Gamma') ?>
-    <?php // echo $form->field($model, 'Mpow') ?>
-    <?php // echo $form->field($model, 'SPLmx') ?>
-    <?php // echo $form->field($model, 'Hc') ?>
-    <?php // echo $form->field($model, 'Hg') ?>
-    <?php // echo $form->field($model, 'AspectR') ?>
-    <?php // echo $form->field($model, 'LengthOA') ?>
-    <?php // echo $form->field($model, 'WidthOA') ?>
-    <?php // echo $form->field($model, 'F_HighRated') ?>
-    <?php // echo $form->field($model, 'F_LowRated') ?>
-    <?php // echo $form->field($model, 'VCMat') ?>
-    <?php // echo $form->field($model, 'FormerMat') ?>
-    <?php // echo $form->field($model, 'DiaphMat') ?>
-    <?php // echo $form->field($model, 'SurrMat') ?>
-    <?php // echo $form->field($model, 'SpidMat') ?>
-    <?php // echo $form->field($model, 'FrameMat') ?>
-    <?php // echo $form->field($model, 'MagMat') ?>
-    <?php // echo $form->field($model, 'DiaphShape') ?>
-    <?php // echo $form->field($model, 'MotorShape') ?>
-    <?php // echo $form->field($model, 'MotorLength') ?>
-    <?php // echo $form->field($model, 'MotorWidth') ?>
-    <?php // echo $form->field($model, 'FlangeH') ?>
-    <?php // echo $form->field($model, 'MagDiam') ?>
-    <?php // echo $form->field($model, 'MagH') ?>
-    <?php // echo $form->field($model, 'MagMass') ?>
-    <?php // echo $form->field($model, 'Bpeak') ?>
-    <?php // echo $form->field($model, 'BaffleCutoutDiam') ?>
-    <?php // echo $form->field($model, 'BaffleCutoutLength') ?>
-    <?php // echo $form->field($model, 'BaffleCutoutWidth') ?>
-    <?php // echo $form->field($model, 'BoltCircleDiam') ?>
-    <?php // echo $form->field($model, 'BoltCircleScrewDiam') ?>
-    <?php // echo $form->field($model, 'BoltCircleScrewQty') ?>
-    <?php // echo $form->field($model, 'TerminalPairsQty') ?>
-    <?php // echo $form->field($model, 'TempLowPerfRated') ?>
-    <?php // echo $form->field($model, 'TempHighPerfRated') ?>
-    <?php // echo $form->field($model, 'TempLowDamageRated') ?>
-    <?php // echo $form->field($model, 'TempHighDamageRated') ?>
-    <?php // echo $form->field($model, 'HumidityLowPerfRated') ?>
-    <?php // echo $form->field($model, 'HumidityHighPerfRated') ?>
-    <?php // echo $form->field($model, 'HumidityLowDamageRated') ?>
-    <?php // echo $form->field($model, 'HumidityHighDamageRated') ?>
-    <?php // echo $form->field($model, 'Urms_100H_Max') ?>
-    <?php // echo $form->field($model, 'Urms_Max_Rated') ?>
-    <?php // echo $form->field($model, 'BL1') ?>
-    <?php // echo $form->field($model, 'BL2') ?>
-    <?php // echo $form->field($model, 'BL3') ?>
-    <?php // echo $form->field($model, 'BL4') ?>
-    <?php // echo $form->field($model, 'BL5') ?>
-    <?php // echo $form->field($model, 'BL6') ?>
-    <?php // echo $form->field($model, 'BL7') ?>
-    <?php // echo $form->field($model, 'BL8') ?>
-    <?php // echo $form->field($model, 'K1') ?>
-    <?php // echo $form->field($model, 'K2') ?>
-    <?php // echo $form->field($model, 'K3') ?>
-    <?php // echo $form->field($model, 'K4') ?>
-    <?php // echo $form->field($model, 'K5') ?>
-    <?php // echo $form->field($model, 'K6') ?>
-    <?php // echo $form->field($model, 'K7') ?>
-    <?php // echo $form->field($model, 'K8') ?>
-    <?php // echo $form->field($model, 'Lx1') ?>
-    <?php // echo $form->field($model, 'Lx2') ?>
-    <?php // echo $form->field($model, 'Lx3') ?>
-    <?php // echo $form->field($model, 'Lx4') ?>
-    <?php // echo $form->field($model, 'Lx5') ?>
-    <?php // echo $form->field($model, 'Lx6') ?>
-    <?php // echo $form->field($model, 'Lx7') ?>
-    <?php // echo $form->field($model, 'Lx8') ?>
-    <?php // echo $form->field($model, 'Li1') ?>
-    <?php // echo $form->field($model, 'Li2') ?>
-    <?php // echo $form->field($model, 'Li3') ?>
-    <?php // echo $form->field($model, 'Li4') ?>
-    <?php // echo $form->field($model, 'Rmv1') ?>
-    <?php // echo $form->field($model, 'Rmv2') ?>
-    <?php // echo $form->field($model, 'Rmv3') ?>
-    <?php // echo $form->field($model, 'Rmv4') ?>
-    <?php // echo $form->field($model, 'Rtm') ?>
-    <?php // echo $form->field($model, 'Rtv') ?>
-    <?php // echo $form->field($model, 'tauC') ?>
-    <?php // echo $form->field($model, 'tauM') ?>
-    <?php // echo $form->field($model, 'Rv') ?>
-    <?php // echo $form->field($model, 'AlphaBypass') ?>
-    <?php // echo $form->field($model, 'Ctm') ?>
-    <?php // echo $form->field($model, 'Ctv') ?>
-    <?php // echo $form->field($model, 'DIY_Availability') ?>
-    <?php // echo $form->field($model, 'Application') ?>
-    <?php // echo $form->field($model, 'Notes') ?>
-
-
-<hr />
-    <?php ActiveForm::end(); ?>
-
-</div>
 
 <?php /*
 <div class="grid_container" data-slider="dd">
@@ -12323,4 +12025,3 @@ var_dump($model->height_oa_sort);
                     }
                 </script>
    */ ?>             
-</section>

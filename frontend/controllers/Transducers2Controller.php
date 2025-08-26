@@ -39,7 +39,7 @@ class Transducers2Controller extends Controller
     public function actionIndex()
     {
         
-       // var_dump($this->request->queryParams);
+        var_dump($this->request->queryParams);
         
         $searchModel = new Transducers2Search();
         $dataProvider = $searchModel->search($this->request->queryParams);

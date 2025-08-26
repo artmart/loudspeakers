@@ -174,6 +174,22 @@ use Yii;
  */
 class Transducers2 extends \yii\db\ActiveRecord
 {
+    
+    public $height_oa_min;
+    public $height_oa_max;
+    
+    public $cost_min;
+    public $cost_max;
+    
+    public $mass_oa_min;
+    public $mass_oa_max;
+    
+    public $diam_oa_min;
+    public $diam_oa_max;
+    
+    public $pmax_rated_min;
+    public $pmax_rated_max;
+    
     /**
      * {@inheritdoc}
      */

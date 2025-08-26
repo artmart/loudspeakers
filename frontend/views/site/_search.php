@@ -72,7 +72,7 @@ var_dump($model->height_oa_sort);
 <section class="results1">
 <div class="transducers2-search">
 
-<?php $form = ActiveForm::begin(['id' => 'pjax_form1', 'action' => ['index'], 'method' => 'get',  'options' => ['data-pjax' => false]]); ?>
+<?php $form = ActiveForm::begin(['id' => 'form_id', 'action' => ['index'], 'method' => 'post',  'options' => ['data-pjax' => false]]); ?>
 
 
 
@@ -118,14 +118,17 @@ var_dump($model->height_oa_sort);
     </div>
     <div class="col-md-3">  
     <div class="form-group">
-        <?php echo Html::submitButton('Search', ['class' => 'btn btn-primary w-100', 'style'=>'margin-top: 25px; background: var(--blue);']) ?>
+        <?php echo Html::submitButton('Search', ['class' => 'btn btn-primary w-100', 'onclick'=>'loadnewdata()', 'style'=>'margin-top: 25px; background: var(--blue);']) ?>
         <?php // Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
     </div>    
     </div>
 </div>
 </div>
   
-  
+<script>
+$("#form_id").submit(function(){return false;});
+$("#wait").css("display", "none");
+</script>  
 
   
 <?php  /*?>   

@@ -9,6 +9,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         //'css/site.css',
+        'css/nouislider.min.css',
         'vendor/font-awesome/css/font-awesome.min.css',
         'vendor/iCheck/skins/flat/green.css',	
         'build/css/custom.css',
@@ -19,8 +20,8 @@ class AppAsset extends AssetBundle
         //<!-- iCheck -->
         "vendor/iCheck/icheck.min.js",
         "build/js/custom.js",
-        'vendor/bootstrap-select/dist/js/bootstrap-select.min.js'
-        
+        'vendor/bootstrap-select/dist/js/bootstrap-select.min.js',
+        'js/nouislider.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

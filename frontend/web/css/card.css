@@ -23,6 +23,8 @@
 	float: left;
 	/*margin: 1px;*/
 	border-color: #1D78BE;
+	min-height: 310px !important;
+	min-width: 400px !important;
 }
 
 .woofer_card.opened_in_a_tab {

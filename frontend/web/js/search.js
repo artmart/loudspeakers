@@ -349,8 +349,8 @@ class Search {
       }
     }
 
-    console.log(start_parameters)
-    console.log(this.sort)
+    //console.log(start_parameters)
+    //console.log(this.sort)
     return start_parameters
   }
 
@@ -406,10 +406,10 @@ class Search {
 
 
   update_histograms() {
-    let histograms_data = JSON.parse(this.div.querySelector(".results .histograms_data").textContent)
-    this.sliders.forEach((slider) => {
-      slider.histogram(histograms_data[slider.symbol])
-    })
+    //let histograms_data = JSON.parse(this.div.querySelector(".results .histograms_data").textContent)
+    //this.sliders.forEach((slider) => {
+    //  slider.histogram(histograms_data[slider.symbol])
+    //})
   }
 
 

@@ -1,9 +1,7 @@
 <?php
-
-
 $data_woofer = json_encode(["re"    =>$model->Re,   //6.0,
                             "bl"    =>$model->BL,  //13.5,
-                            "mmd"   =>$model->Mm, //59.2,
+                            "mmd"   =>$model->Mmd, //59.2,
                             "rms"   =>$model->Rm, //2.2,
                             "cms"   =>$model->Cm, //490.0,
                             "sd"    =>$model->Sd*10000, //340.0,
@@ -13,18 +11,19 @@ $data_woofer = json_encode(["re"    =>$model->Re,   //6.0,
                             "xmax"  =>$model->Xmax*1000, //3.5,
                             "pmax"  =>$model->Pmax_Rated, //160,
                             "spl1w" =>$model->SPL1W, //88.5,
-                            "z"     =>$model->Zres //8
+                            "z"     =>$model->Zres, //8
+                            
+                            "mms"   =>$model->Mm,
                             ]);
-
 ?>
 
-
-
-<article class="woofer_card ribbon-container" data-woofer-id="<?=$model->id;?>" data-woofer='<?=$data_woofer;?>'>
+<article class="woofer_card ribbon-container col-md-4" data-woofer-id="<?=$model->id;?>" data-woofer='<?=$data_woofer;?>'>
 <a href="/transducers2/view?id=<?=$model->id;?>">
 <div class="photos_and_graphs">
     <div class="photo">
-        <img alt="<?=$model->Brand.' '.$model->Model.' '.$model->Type;?>" loading="lazy" src="/img/noimage.jpg" data-photo2="/img/nodata.png"/>
+          <img alt="<?=$model->Brand.' '.$model->Model.' '.$model->Type;?>" loading="lazy" src="/img/noimage.jpg" data-photo2="/img/nodata.png"/> 
+        <?php /*<img alt="<?=$model->Brand.' '.$model->Model.' '.$model->Type;?>" loading="lazy" src="/img/noimage.jpg" onmouseover="this.src='/img/nodata.png'" onmouseout="this.src='/img/noimage.jpg'">
+        */ ?>
     </div>
     <div class="graph">
         <div data-graph-size="mini" data-enclosure-type="inf_baffle" data-woofer-id="<?=$model->id;?>" data-woofer='<?=$data_woofer;?>'>

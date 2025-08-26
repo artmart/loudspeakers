@@ -7,11 +7,6 @@ ItemsAsset::register($this);
 
 $this->title = 'Loudspeaker Database';
 $this->params['breadcrumbs'][] = $this->title;
-
-
-
-
-
 ?>
 
 

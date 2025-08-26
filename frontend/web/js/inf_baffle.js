@@ -219,7 +219,12 @@ _inf_baffle.highlight_selected_curves = (type = "on_change") => {
 
 _inf_baffle.fetch_json = function (force_overwrite = false) {
   let data_array = []
-  document.querySelectorAll('[data-enclosure-type="inf_baffle"]').forEach((div) => {
+  const listings = document.querySelectorAll('[data-enclosure-type="inf_baffle"]');
+  //console.log(listings); 
+  
+  listings.forEach((div) => {
+	  
+	 
     if (!div.graph_data || force_overwrite) {
       let size = div.dataset.graphSize
       let scale = { ..._graph.scale["fr"] } // /!\ objects are passed by reference

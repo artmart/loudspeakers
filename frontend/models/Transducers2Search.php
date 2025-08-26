@@ -11,6 +11,26 @@ use frontend\models\Transducers2;
  */
 class Transducers2Search extends Transducers2
 {
+    
+    public $height_oa_min;
+    public $height_oa_max;
+    public $height_oa_sort;
+    
+    public $cost_min;
+    public $cost_max;
+    public $cost_sort;
+    
+    public $mass_oa_min;
+    public $mass_oa_max;
+    public $mass_oa_sort;
+    
+    public $diam_oa_min;
+    public $diam_oa_max;
+    public $diam_oa_sort;
+    
+    public $pmax_rated_min;
+    public $pmax_rated_max;
+    public $pmax_rated_sort;
     /**
      * {@inheritdoc}
      */
@@ -90,10 +110,10 @@ class Transducers2Search extends Transducers2
             'Beta' => $this->Beta,
             'EntryDate' => $this->EntryDate,
             'Vocc' => $this->Vocc,
-            'MassOA' => $this->MassOA,
-            'DiamOA' => $this->DiamOA,
-            'HeightOA' => $this->HeightOA,
-            'Cost' => $this->Cost,
+            //'MassOA' => $this->MassOA,
+            //'DiamOA' => $this->DiamOA,
+            //'HeightOA' => $this->HeightOA,
+            //'Cost' => $this->Cost,
             'entered_by' => $this->entered_by,
             'DataDate' => $this->DataDate,
             'Km' => $this->Km,
@@ -161,7 +181,7 @@ class Transducers2Search extends Transducers2
             'HumidityHighDamageRated' => $this->HumidityHighDamageRated,
             'Urms_100H_Max' => $this->Urms_100H_Max,
             'Urms_Max_Rated' => $this->Urms_Max_Rated,
-            'Pmax_Rated' => $this->Pmax_Rated,
+            //'Pmax_Rated' => $this->Pmax_Rated,
             'BL1' => $this->BL1,
             'BL2' => $this->BL2,
             'BL3' => $this->BL3,
@@ -228,6 +248,12 @@ class Transducers2Search extends Transducers2
         $query->andFilterWhere(['like', 'DataSource', $this->DataSource])
             ->andFilterWhere(['in', 'Brand', $this->Brand])
             ->andFilterWhere(['in', 'Type', $this->Type]);
+            
+        $query->andFilterWhere(['between', 'Cost', $this->cost_min, $this->cost_max])
+              ->andFilterWhere(['between', 'DiamOA', $this->diam_oa_min, $this->diam_oa_max])
+              ->andFilterWhere(['between', 'HeightOA', $this->height_oa_min, $this->height_oa_max])
+              ->andFilterWhere(['between', 'MassOA', $this->mass_oa_min, $this->mass_oa_max])
+              ->andFilterWhere(['between', 'Pmax_Rated', $this->pmax_rated_min, $this->pmax_rated_max]);   
 
         return $dataProvider;
     }
